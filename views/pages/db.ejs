@@ -10,9 +10,33 @@
 
 <ul>
   Hello there!
-    <% results.forEach(function(r) { %>
-        <li><%= r.id %> - <%= r.name %></li>
+    <% tableOne.forEach(function(test) { %>
+        <li><%= test.id %> - 
+          <%= test.name %>
+        </li>
     <% }); %>
+    <% tableTwo.forEach(function(two) { %>
+      <li><%= two.title_id %> - 
+          <%= test.title_name %>
+          <%= two.genre_type %> -
+          <%= two.type_tv %> -
+          <%= two.type_film %> -
+          <%= two.type_other %>
+      </li>
+  <% }); %>
+  <% tableThree.forEach(function(three) { %>
+    <li><%= three.username %> - 
+        <%= three.password %>
+        <%= three.first_name %> -
+        <%= three.last_name %> -
+        <%= three.email_address %>
+    </li>
+<% }); %>
+    <% tableFour.forEach(function(four) { %>
+      <li><%= four.genre_id %> - 
+        <%= four.genre_type %>
+      </li>
+  <% }); %>
 </ul>
 
 </div>

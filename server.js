@@ -16,8 +16,16 @@ app.get('/postage', function (req, res) {
 app.get('/db', async function(req, res) {
     try {
         const client = await pool.connect();
-        const result = await client.query('SELECT * FROM test_table');
-        const results = { 'results': (result) ? result.rows: null};
+        const tableOne = await client.query('SELECT * FROM test_table');
+        const tableTwo = await client.query('SELECT * FROM media_table');
+        const tableThree = await client.query('SELECT * FROM login_table');
+        const tableFour = await client.query('SELECT * FROM genre_table');
+        const results = { 
+            'tableOne': (tableOne) ? tableOne.rows: null,
+            'tableTwo': (tableTwo) ? tableTwo.rows: null,
+            'tableThree': (tableThree) ? tableThree.rows: null, 
+            'tableFour': (tableFour) ? tableFour.rows: null
+        };
         res.render('pages/db.ejs', results);
         client.release();
     } catch (err) {
