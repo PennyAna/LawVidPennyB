@@ -1,0 +1,34 @@
+{
+  "name": "postage_app",
+  "version": "0.3.0",
+  "description": "postal rates assignment",
+  "engines": {
+    "node": "12.x",
+    "npm": "6.14.8"
+  },
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "ejs": "^2.5.6",
+    "express": "^4.17.1",
+    "pg": "^8.5.1"
+  },
+  "devDependencies": {
+    "got": "^11.3.0",
+    "tape": "^4.7.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/heroku/node-js-getting-started"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express",
+    "pg"
+  ],
+  "license": "MIT"
+}
