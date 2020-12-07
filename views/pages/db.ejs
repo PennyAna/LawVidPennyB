@@ -12,12 +12,12 @@
   Hello there!
     <% tableOne.forEach(function(test) { %>
         <li><%= test.id %> - 
-          <%= test.name %>
+            <%= test.name %>
         </li>
     <% }); %>
     <% tableTwo.forEach(function(two) { %>
       <li><%= two.title_id %> - 
-          <%= test.title_name %>
+          <%= two.title_name %>
           <%= two.genre_type %> -
           <%= two.type_tv %> -
           <%= two.type_film %> -
@@ -34,7 +34,7 @@
 <% }); %>
     <% tableFour.forEach(function(four) { %>
       <li><%= four.genre_id %> - 
-        <%= four.genre_type %>
+          <%= four.genre_type %>
       </li>
   <% }); %>
 </ul>
