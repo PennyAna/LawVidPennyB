@@ -1,16 +1,16 @@
+//all the requires
 const express = require('express');
 const path = require('path');
 const passport = require('passport');
 const Strategy = require('passport-local').Strategy;
 const db = require('./db');
-
 // Configure the local strategy for use by Passport.
 //
 // The local strategy require a `verify` function which receives the credentials
 // (`username` and `password`) submitted by the user.  The function must verify
 // that the password is correct and then invoke `cb` with a user object, which
 // will be set at `req.user` in route handlers after authentication.
-passport.use(new Strategy(function(username, password, cb) { db.useres.findByUsername(username, function (err, user) {
+passport.use(new Strategy(function(username, password, cb) { db.users.findByUsername(username, function (err, user) {
     if (err) {return cb(err);}
     if (!user) {return cb(null, false);}
     if (user.password != password) {return cb(null, false);}
@@ -18,7 +18,6 @@ passport.use(new Strategy(function(username, password, cb) { db.useres.findByUse
 });
 }));
 // Configure Passport authenticated session persistence.
-//
 // In order to restore authentication state across HTTP requests, Passport needs
 // to serialize users into and deserialize users out of the session.  The
 // typical implementation of this is as simple as supplying the user ID when
@@ -53,12 +52,12 @@ app.use(passport.session());
 // Define routes.
 app.get('/', 
         function(req, res) {
-            res.render('index.ejs', {user: req.user});});
+            res.render('/views/pages/home.ejs', {user: req.user});});
 app.get('/login', 
         function(req, res) {
-            res.render('login.ejs');});
+            res.render('/views/pages/login.ejs');});
 app.post('/login', 
-        passport.authenticate('local', {failureRedirect: '/'}),
+        passport.authenticate('local', {failureRedirect: '/login'}),
         function(req, res) { 
         res.redirect('/');});
 app.get('/logout', 
@@ -68,10 +67,10 @@ app.get('/logout',
 app.get('/profile', 
         require('connect-ensure-login').ensureLoggedIn(), 
         function(req, res) {
-            res.render('profile', {user: req.user});});
+            res.render('/views/pages/profile.ejs', {user: req.user});});
 app.get('/main', 
         function (req, res) { 
-            res.render('pages/index.ejs', {user:req.user});})
+            res.render('pages/main.ejs', {user:req.user});})
 app.get('/db', 
         async function(req, res) {
         try {
