@@ -52,10 +52,10 @@ app.use(passport.session());
 // Define routes.
 app.get('/', 
         function(req, res) {
-            res.render('/views/pages/home.ejs', {user: req.user});});
+            res.render('home', {user: req.user});});
 app.get('/login', 
         function(req, res) {
-            res.render('/views/pages/login.ejs');});
+            res.render('login');});
 app.post('/login', 
         passport.authenticate('local', {failureRedirect: '/login'}),
         function(req, res) { 
@@ -65,7 +65,7 @@ app.get('/logout',
             req.logout();
             res.redirect('/');});
 app.get('/profile', 
-        require('connect-ensure-login').ensureLoggedIn(), 
+        require('connect-ensure-login').ensureLoggedIn() , 
         function(req, res) {
             res.render('/views/pages/profile.ejs', {user: req.user});});
 app.get('/main', 
