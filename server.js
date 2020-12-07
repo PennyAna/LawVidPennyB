@@ -52,7 +52,7 @@ app.use(passport.session());
 // Define routes.
 app.get('/', 
         function(req, res) {
-            res.render('./home.ejs', {user: req.user});});
+            res.render('./pages/index.ejs', {user: req.user});});
 app.get('/login', 
         function(req, res) {
             res.render('./login.ejs');});
@@ -67,11 +67,11 @@ app.get('/logout',
 app.get('/profile', 
         require('connect-ensure-login').ensureLoggedIn() , 
         function(req, res) {
-            res.render('./profile.ejs', {user: req.user});});
+            res.render('./pages/admin.ejs', {user: req.user});});
 app.get('/main', 
         function (req, res) { 
             res.render('pages/main.ejs', {user:req.user});})
-app.get('/db', 
+app.get('/main', 
         async function(req, res) {
         try {
             const client = await pool.connect();
