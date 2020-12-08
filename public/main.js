@@ -1,3 +1,4 @@
+exports.users = require('./users');
 var postal_type = '';
 var postal_choice = '';
 document.getElementById('postalType').addEventListener('selectionchange', function() {

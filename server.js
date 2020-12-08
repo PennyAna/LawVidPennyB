@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 const passport = require('passport');
 const Strategy = require('passport-local').Strategy;
-const db = require('./db');
+const db = require('./public');
 // Configure the local strategy for use by Passport.
 //
 // The local strategy require a `verify` function which receives the credentials
@@ -52,25 +52,23 @@ app.use(passport.session());
 // Define routes.
 app.get('/', 
         function(req, res) {
-            res.render('./pages/index.ejs', {user: req.user});});
+            res.render('./pages/index.ejs', {user: req.user});}); //=home
 app.get('/login', 
         function(req, res) {
-            res.render('./login.ejs');});
+            res.render('./pages/index.ejs');});
+            //=login
 app.post('/login', 
-        passport.authenticate('local', {failureRedirect: '/login'}),
+        passport.authenticate('local', {failureRedirect: './pages/index.ejs'}),
         function(req, res) { 
-        res.redirect('/');});
+        res.redirect('/main');});//=index or main
 app.get('/logout', 
         function(req, res) {
             req.logout();
-            res.redirect('/');});
-app.get('/profile', 
+            res.redirect('/');});//=index
+app.get('/admin', 
         require('connect-ensure-login').ensureLoggedIn() , 
         function(req, res) {
-            res.render('./pages/admin.ejs', {user: req.user});});
-app.get('/main', 
-        function (req, res) { 
-            res.render('pages/main.ejs', {user:req.user});})
+            res.render('./pages/admin.ejs', {user: req.user});});//=admin
 app.get('/main', 
         async function(req, res) {
         try {
@@ -85,12 +83,12 @@ app.get('/main',
                 'tableThree': (tableThree) ? tableThree.rows: null, 
                 'tableFour': (tableFour) ? tableFour.rows: null
             };
-            res.render('pages/db.ejs', results);
+            res.render('pages/main.ejs', results);
             client.release();
         } catch (err) {
         console.error(err);
         res.send("Error " + err);
-        }})
+        }});//=main
 const {Pool} = require('pg');
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL, 

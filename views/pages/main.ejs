@@ -1,43 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <% include ../partials/header.ejs %>
 </head>
 <body>
-    <div class="container">
-        <h2>Database Results</h2>
-        <ul>
-          Hello there!
-            <% tableOne.forEach(function(test) { %>
-                <li><%= test.id %> - 
-                    <%= test.name %>
-                </li>
-            <% }); %>
-            <% tableTwo.forEach(function(two) { %>
-              <li><%= two.title_id %> - 
-                  <%= two.title_name %>
-                  <%= two.genre_type %> -
-                  <%= two.type_tv %> -
-                  <%= two.type_film %> -
-                  <%= two.type_other %>
-              </li>
-          <% }); %>
-          <% tableThree.forEach(function(three) { %>
-            <li><%= three.username %> - 
-                <%= three.password %>
-                <%= three.first_name %> -
-                <%= three.last_name %> -
-                <%= three.email_address %>
-            </li>
-        <% }); %>
-            <% tableFour.forEach(function(four) { %>
-              <li><%= four.genre_id %> - 
-                  <%= four.genre_name %>
-              </li>
-          <% }); %>
-        </ul>
-    </div>
+    <% include ../partials/nav.ejs %>
+    <h1>Main</h1>
+    <% include ../partials/db.ejs %>
+    <script src="../../public/main.js"></script>
 </body>
 </html>
