@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 const passport = require('passport');
 const Strategy = require('passport-local').Strategy;
-const db = require('./db');
+const db = require('../db');
 // Configure the local strategy for use by Passport.
 //
 // The local strategy require a `verify` function which receives the credentials

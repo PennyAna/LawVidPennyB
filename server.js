@@ -43,8 +43,6 @@ app.set(express.static(path.join(__dirname, '/')));
 app.set('port', (process.env.PORT || 5000));
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
-// Configure view engine to render EJS templates.
-app.set('view engine', 'ejs');
 
 // Use application-level middleware for common functionality, including
 // logging, parsing, and session handling.
@@ -60,7 +58,7 @@ app.use(passport.session());
 // Define routes.
 app.get('/',
   function(req, res) {
-    res.render('home', { user: req.user });
+    res.render('pages/home.ejs', { user: req.user });
   });
 
 app.get('/login',
@@ -69,7 +67,7 @@ app.get('/login',
   });
   
 app.post('/login', 
-  passport.authenticate('local', { failureRedirect: '/login' }),
+  passport.authenticate('local', { failureRedirect: 'pages/login.ejs' }),
   function(req, res) {
     res.redirect('/');
   });
@@ -83,10 +81,10 @@ app.get('/logout',
 app.get('/profile',
   require('connect-ensure-login').ensureLoggedIn(),
   function(req, res){
-    res.render('profile', { user: req.user });
+    res.render('pages/profile.ejs', { user: req.user });
   });
   
-  app.get('/db', 
+  app.get('/main', 
   async function(req, res) {
   try {
       const client = await pool.connect();
