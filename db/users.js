@@ -13,7 +13,6 @@ exports.findById = function(id, cb) {
     }
   });
 }
-
 exports.findByName = function(name, cb) {
   process.nextTick(function() {
     for (var i = 0, len = records.length; i < len; i++) {

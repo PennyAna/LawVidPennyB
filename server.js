@@ -10,7 +10,10 @@ const db = require('./db');
 // that the password is correct and then invoke `cb` with a user object, which
 // will be set at `req.user` in route handlers after authentication.
 passport.use('local',
-  new Strategy(
+  new Strategy( {
+    usernameField: 'name', 
+    passwordField: 'password'
+  },
   function(name, password, cb) {
     db.users.findByName(name, 
       function(err, user) {
@@ -90,7 +93,7 @@ app.get('/login',
   });
   
   app.post('/login', 
-  passport.authenticate('local', { failureRedirect: 'login.ejs' }),
+  passport.authenticate('local', { failureRedirect: '/login' }),
   function(req, res) {
     res.redirect('/');
     console.log('loginpost');
