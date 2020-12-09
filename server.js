@@ -9,15 +9,36 @@ const db = require('./db');
 // (`username` and `password`) submitted by the user.  The function must verify
 // that the password is correct and then invoke `cb` with a user object, which
 // will be set at `req.user` in route handlers after authentication.
-passport.use(new Strategy(
-  function(username, password, cb) {
-    db.users.findByUsername(username, function(err, user) {
+passport.use('local',
+  new Strategy(
+  function(name, password, cb) {
+    db.users.findByUsername(name, 
+      function(err, user) {
       if (err) { return cb(err); }
       if (!user) { return cb(null, false); }
       if (user.password != password) { return cb(null, false); }
       return cb(null, user);
-    });
-  }));
+    });}));
+/* passport.use('my-simple-login-strategy',
+  new Strategy(
+  STRAT_CONFIG,
+  function(email, password, cb) {
+    db.users.findUserByEmailPass(email, password, 
+      function (err, userFoundByDB) {
+      if (err) {return cb(err);}
+      if (!userFoundByDB) {return cb(null, false);}
+      console.log('... ' + JSON.stringify(userFoundByDB))
+      return cb(null, userFoundByDB)
+    });}));
+passport.use('my-simple-createaccount-strategy', 
+  new Strategy(
+    STRAT_CONFIG, 
+    function(email, password, cb) {
+      db.simpleCreate(email, password, function(err, trueOrFalse) {
+        if (err) {return cb(err);}
+        if (!trueOrFalse) {return cb(null, false);}
+        return cb(null, trueOrFalse)
+      });})); */
 // Configure Passport authenticated session persistence.
 //
 // In order to restore authentication state across HTTP requests, Passport needs
@@ -66,12 +87,17 @@ app.get('/login',
     res.render('login');
   });
   
-app.post('/login', 
-  passport.authenticate('local', { failureRedirect: 'pages/login.ejs' }),
+/* app.post('/login', 
+  passport.authenticate('my-simple-login-strategy', { failureRedirect: 'pages/login.ejs' }),
   function(req, res) {
     res.redirect('/');
   });
-  
+app.post('/createaccount', urlencodedParser, 
+  passport.authenticate('my-simple-createaccount-strategy', {
+    failureRedirect: '/createaccount'}), 
+    function(req, res) {
+      res.redirect('login');
+  }); */
 app.get('/logout',
   function(req, res){
     req.logout();
