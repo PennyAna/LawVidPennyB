@@ -84,11 +84,11 @@ app.get('/',
 
 app.get('/login',
   function(req, res){
-    res.render('login');
+    res.render('pages/login.ejs');
   });
   
   app.post('/login', 
-  passport.authenticate('local', { failureRedirect: '/login' }),
+  passport.authenticate('local', { failureRedirect: 'pages/login.ejs' }),
   function(req, res) {
     res.redirect('/');
   });
