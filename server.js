@@ -85,12 +85,12 @@ app.get('/profile',
     res.render('profile.ejs', { user: req.user });
     console.log('profileget');
   });
-  app.get('/create', 
+/*   app.get('/create', 
     function(req, res) {
       req.logout();
       res.redirect('/createnew.ejs');
       console.log('makenewget');
-    });
+    }); */
   app.get('/main', 
   async function(req, res) {
   try {
