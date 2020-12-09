@@ -12,7 +12,7 @@ const db = require('./db');
 passport.use('local',
   new Strategy(
   function(name, password, cb) {
-    db.users.findByUsername(name, 
+    db.users.findByDisplayName(name, 
       function(err, user) {
       if (err) { return cb(err); }
       if (!user) { return cb(null, false); }
