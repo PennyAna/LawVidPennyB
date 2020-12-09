@@ -25,7 +25,7 @@ exports.findByName = function(name, cb) {
   });
 }
 
-/* exports.findUserByEmail = function(email, cb) {
+exports.findByEmail = function(email, cb) {
   process.nextTick(function() {
     for (var i = 0, len = records.length; i < len; i++) {
       var record = records[i];
@@ -35,7 +35,7 @@ exports.findByName = function(name, cb) {
     }
     return cb(null, null);
   });
-} */
+} 
 
 /* exports.findUserByEmail = function(email, cb) {
   process.nextTick(function() {
