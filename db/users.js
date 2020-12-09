@@ -3,7 +3,7 @@ var records = [
     { id: 2, email: 'jill@example.com', name: 'Jill', password: 'birthday'}
 ];
 
-exports.function findById(id, cb) {
+exports.findById = function(id, cb) {
   process.nextTick(function() {
     var idx = id - 1;
     if (records[idx]) {
@@ -14,7 +14,7 @@ exports.function findById(id, cb) {
   });
 }
 
-exports.function findUserByName(name, cb) {
+exports.findUserByName = function(name, cb) {
   process.nextTick(function() {
     for (var i = 0, len = records.length; i < len; i++) {
       var record = records[i];
@@ -26,7 +26,7 @@ exports.function findUserByName(name, cb) {
   });
 }
 
-exports.function findUserByEmail(email, cb) {
+exports.findUserByEmail = function(email, cb) {
   process.nextTick(function() {
     for (var i = 0, len = records.length; i < len; i++) {
       var record = records[i];
