@@ -11,11 +11,11 @@ const db = require('./db');
 // will be set at `req.user` in route handlers after authentication.
 passport.use('local',
   new Strategy( {
-    usernameField: 'email', 
+    usernameField: 'name', 
     passwordField: 'password'
   },
-  function(email, password, cb) {
-    db.users.findByEmail(email, 
+  function(name, password, cb) {
+    db.users.findByName(name, 
       function(err, user) {
       if (err) { return cb(err); }
       if (!user) { return cb(null, false); }
