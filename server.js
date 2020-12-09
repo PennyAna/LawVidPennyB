@@ -93,7 +93,7 @@ app.get('/login',
   passport.authenticate('local', { failureRedirect: 'login.ejs' }),
   function(req, res) {
     res.redirect('/');
-    console.log('loginpost2');
+    console.log('loginpost');
   });
 /* app.post('/login', 
   passport.authenticate('my-simple-login-strategy', { failureRedirect: 'pages/login.ejs' }),
