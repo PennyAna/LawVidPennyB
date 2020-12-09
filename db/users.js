@@ -1,9 +1,9 @@
 var records = [
-    { id: 1, email: 'jack@example.com',username: 'jack', password: 'secret', displayName: 'Jack'},
-     { id: 2, email: 'jill@example.com', password: 'birthday', displayName: 'Jill'}
+    { id: 1, email: 'jack@example.com', name: 'Jack', password: 'secret'},
+    { id: 2, email: 'jill@example.com', name: 'Jill', password: 'birthday'}
 ];
 
-exports.findById = function(id, cb) {
+export function findById(id, cb) {
   process.nextTick(function() {
     var idx = id - 1;
     if (records[idx]) {
@@ -14,11 +14,23 @@ exports.findById = function(id, cb) {
   });
 }
 
-exports.findUserByDisplayName = function(name, cb) {
+export function findUserByName(name, cb) {
   process.nextTick(function() {
     for (var i = 0, len = records.length; i < len; i++) {
       var record = records[i];
-      if (record.displayName === name) {
+      if (record.name === name) {
+        return cb(null, record);
+      }
+    }
+    return cb(null, null);
+  });
+}
+
+export function findUserByEmail(email, cb) {
+  process.nextTick(function() {
+    for (var i = 0, len = records.length; i < len; i++) {
+      var record = records[i];
+      if (record.email === email) {
         return cb(null, record);
       }
     }
