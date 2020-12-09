@@ -105,7 +105,7 @@ app.get('/profile',
           'tableThree': (tableThree) ? tableThree.rows: null, 
           'tableFour': (tableFour) ? tableFour.rows: null
       };
-      res.render('pages/main.ejs', results);
+      res.render('/views/main.ejs', results);
       client.release();
   } catch (err) {
   console.error(err);
