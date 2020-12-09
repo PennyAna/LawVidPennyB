@@ -80,17 +80,20 @@ app.use(passport.session());
 app.get('/',
   function(req, res) {
     res.render('home.ejs', { user: req.user });
+    console.log('homeget');
   });
 
 app.get('/login',
   function(req, res){
     res.render('login.ejs');
+    console.log('loginget');
   });
   
   app.post('/login', 
   passport.authenticate('local', { failureRedirect: 'login.ejs' }),
   function(req, res) {
     res.redirect('/');
+    console.log('loginpost2');
   });
 /* app.post('/login', 
   passport.authenticate('my-simple-login-strategy', { failureRedirect: 'pages/login.ejs' }),
@@ -107,12 +110,14 @@ app.get('/logout',
   function(req, res){
     req.logout();
     res.redirect('/');
+    console.log('logoutget');
   });
 
 app.get('/profile',
   require('connect-ensure-login').ensureLoggedIn(),
   function(req, res){
     res.render('profile.ejs', { user: req.user });
+    console.log('profileget');
   });
   
   app.get('/main', 
