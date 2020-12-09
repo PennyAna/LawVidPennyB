@@ -132,20 +132,20 @@ app.get('/profile',
   res.send("Error " + err);
   }});//=main
 const {Pool} = require('pg');
-/* const pool = new Pool({
+const pool = new Pool({
 connectionString: process.env.DATABASE_URL, 
 ssl: {
   rejectUnauthorized: false
 } 
-});*/
-const pool = new Pool({
+});
+/* const pool = new Pool({
   user: process.env.PGUSER, 
   host:process.env.PGHOST, 
   database: process.env.PGDATABASE, 
   password: process.env.PGPASSWORD, 
   port: process.env.PGPORT, 
   ssl: true
-}); 
+});  */
 app.listen(app.get('port'), function() {
 console.log('Now listening for connections on port: ', app.get('port'));
 });
