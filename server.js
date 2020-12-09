@@ -11,7 +11,7 @@ const db = require('./db');
 // will be set at `req.user` in route handlers after authentication.
 passport.use('local',
   new Strategy( {
-    usernameField: 'name', 
+    usernameField: 'email', 
     passwordField: 'password'
   },
   function(name, password, cb) {
@@ -22,26 +22,26 @@ passport.use('local',
       if (user.password != password) { return cb(null, false); }
       return cb(null, user);
     });}));
-/* passport.use('my-simple-login-strategy',
-  new Strategy(
-  STRAT_CONFIG,
-  function(email, password, cb) {
-    db.users.findUserByEmailPass(email, password, 
-      function (err, userFoundByDB) {
-      if (err) {return cb(err);}
-      if (!userFoundByDB) {return cb(null, false);}
-      console.log('... ' + JSON.stringify(userFoundByDB))
-      return cb(null, userFoundByDB)
-    });}));
-passport.use('my-simple-createaccount-strategy', 
-  new Strategy(
-    STRAT_CONFIG, 
-    function(email, password, cb) {
-      db.simpleCreate(email, password, function(err, trueOrFalse) {
-        if (err) {return cb(err);}
-        if (!trueOrFalse) {return cb(null, false);}
-        return cb(null, trueOrFalse)
-      });})); */
+
+    async function(req, res) {
+      try {
+          const client = await pool.connect();
+          const tableOne = await client.query('SELECT * FROM test_table');
+          const tableTwo = await client.query('SELECT * FROM media_table');
+          const tableThree = await client.query('SELECT * FROM login_table');
+          const tableFour = await client.query('SELECT * FROM genre_table');
+          const results = { 
+              'tableOne': (tableOne) ? tableOne.rows: null,
+              'tableTwo': (tableTwo) ? tableTwo.rows: null,
+              'tableThree': (tableThree) ? tableThree.rows: null, 
+              'tableFour': (tableFour) ? tableFour.rows: null
+          };
+          res.render('pages/main.ejs', results);
+          client.release();
+      } catch (err) {
+      console.error(err);
+      res.send("Error " + err);
+      }});//=main
 // Configure Passport authenticated session persistence.
 //
 // In order to restore authentication state across HTTP requests, Passport needs
@@ -67,62 +67,50 @@ app.set(express.static(path.join(__dirname, '/')));
 app.set('port', (process.env.PORT || 5000));
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
-
 // Use application-level middleware for common functionality, including
 // logging, parsing, and session handling.
 app.use(require('morgan')('combined'));
 app.use(require('body-parser').urlencoded({ extended: true }));
 app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
-
 // Initialize Passport and restore authentication state, if any, from the
 // session.
 app.use(passport.initialize());
 app.use(passport.session());
-
 // Define routes.
 app.get('/',
   function(req, res) {
     res.render('home.ejs', { user: req.user });
     console.log('homeget');
   });
-
 app.get('/login',
   function(req, res){
     res.render('login.ejs');
     console.log('loginget');
   });
-  
   app.post('/login', 
   passport.authenticate('local', { failureRedirect: '/login' }),
   function(req, res) {
     res.redirect('/');
     console.log('loginpost');
   });
-/* app.post('/login', 
-  passport.authenticate('my-simple-login-strategy', { failureRedirect: 'pages/login.ejs' }),
-  function(req, res) {
-    res.redirect('/');
-  });
-app.post('/createaccount', urlencodedParser, 
-  passport.authenticate('my-simple-createaccount-strategy', {
-    failureRedirect: '/createaccount'}), 
-    function(req, res) {
-      res.redirect('login');
-  }); */
 app.get('/logout',
   function(req, res){
     req.logout();
     res.redirect('/');
     console.log('logoutget');
   });
-
 app.get('/profile',
   require('connect-ensure-login').ensureLoggedIn(),
   function(req, res){
     res.render('profile.ejs', { user: req.user });
     console.log('profileget');
   });
-  
+  app.get('/create', 
+    function(req, res) {
+      req.logout();
+      res.redirect('/createnew.ejs');
+      console.log('makenewget');
+    });
   app.get('/main', 
   async function(req, res) {
   try {
@@ -144,11 +132,19 @@ app.get('/profile',
   res.send("Error " + err);
   }});//=main
 const {Pool} = require('pg');
-const pool = new Pool({
+/* const pool = new Pool({
 connectionString: process.env.DATABASE_URL, 
 ssl: {
   rejectUnauthorized: false
-}
+} 
+});*/
+const pool = new Pool({
+  user: process.env.PGUSER, 
+  host:process.env.PGHOST, 
+  database: process.env.PGDATABASE, 
+  password: process.env.PGPASSWORD, 
+  port: process.env.PGPORT, 
+  ssl: true
 }); 
 app.listen(app.get('port'), function() {
 console.log('Now listening for connections on port: ', app.get('port'));
