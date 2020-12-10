@@ -9,7 +9,7 @@
         <ul>
         Hello there! I access the postgresql database for this app!<br>
             <li>
-            <%result1.forEach(function(r) {%>
+            <%result.forEach(function(r) {%>
                 <%=r.title_id%>
                 <%=r.title_name%>
                 <%if (%><%=r.type_tv%> <%) {%>
@@ -20,10 +20,7 @@
                 <%}
                 if (%><%=r.type_other%> <%) {%>
                     <%=r.type_other%> 
-            <%}});%>
-            <%result2.forEach(function(s) {%>
-                <%s.genre_name%>
-            <%});%>    
+            <%}});%>  
             </li>  
         </ul>
     </div>
