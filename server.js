@@ -89,15 +89,9 @@ app.get('/profile',
   async function(req, res) {
   try {
       const client = await pool.connect();
-      const tableOne = await client.query('SELECT * FROM test_table');
-      const tableTwo = await client.query('SELECT * FROM media_table');
       const tableThree = await client.query('SELECT * FROM login_table');
-      const tableFour = await client.query('SELECT * FROM genre_table');
       const results = { 
-          'tableOne': (tableOne) ? tableOne.rows: null,
-          'tableTwo': (tableTwo) ? tableTwo.rows: null,
-          'tableThree': (tableThree) ? tableThree.rows: null, 
-          'tableFour': (tableFour) ? tableFour.rows: null
+          'tableThree': (tableThree) ? tableThree.rows: null
       };
       res.render('main.ejs', results);
       client.release();

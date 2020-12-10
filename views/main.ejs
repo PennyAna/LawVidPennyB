@@ -8,55 +8,17 @@
         <h2>Database Results</h2>
         <ul>
         Hello there! I access the postgresql database for this app!<br>
-        <% tableOne.forEach(function(test) { %>
-            <li>
-                <%= test.id %> - 
-                <%= test.name %>
-            </li>
-        <% }); %>
-        <% tableTwo.forEach(function(two) { %>
-            <li>
-                <%= two.title_id %> - 
-                <%= two.title_name %>
-                <%= two.genre_type %> -
-                <%= two.type_tv %> -
-                <%= two.type_film %> -
-                <%= two.type_other %>
-            </li>
-        <% }); %>
         <% tableThree.forEach(function(three) { %>
             <li>
-                <%= three.username %> - 
-                <%= three.password %>
-                <%= three.first_name %> -
-                <%= three.last_name %> -
+                <%= three.id %>
+            </li>
+            <li>
+                <%= three.name %>
+            </li>
+            <li>
                 <%= three.email_address %>
             </li>
-        <% }); %>
-        <% tableFour.forEach(function(four) { %>
-            <li>
-                <%= four.genre_id %> - 
-                <%= four.genre_name %>
-            </li>
-        <% }); %>
         </ul>
     </div>
-<!--     <form action="/createnew" method="post">
-        <div>
-            <label>Name:</label>
-            <input type="text" name="name" placeholder="John Doe"/><br/>
-        </div>
-        <div>
-            <label>Email:</label>
-            <input type="text" name="email" placeholder="john@example.com"/><br/>
-            </div>
-        <div>
-            <label>Password:</label>
-            <input type="password" name="password"/>
-        </div>
-            <div>
-            <input type="submit" value="Submit"/>
-        </div> 
-    </form>-->
-</body>
-</html>
+    </body>
+    </html>
