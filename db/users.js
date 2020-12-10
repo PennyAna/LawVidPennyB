@@ -40,12 +40,12 @@ const userName = '';
 const userEmail = '';
 const userId = '';
 const userPwd = '';
-document.getElementById('createBtn').addEventListener('click', makeNewAccount);
+window.document.getElementById('createBtn').addEventListener('click', makeNewAccount);
 
 function makeNewAccount() {
-  userName = document.getElementById('inputName').value;
-  userEmail = document.getElementById('inputEmail').value;
-  userPwd = document.getElementById('inputPwd').value;
+  userName = window.document.getElementById('inputName').value;
+  userEmail = window.document.getElementById('inputEmail').value;
+  userPwd = window.document.getElementById('inputPwd').value;
   userId = records.length;
   newRecord = {
     id: userId, 
@@ -54,6 +54,6 @@ function makeNewAccount() {
     password: userPwd      
   };
   records = records.concat(newRecord);
-  const confirmDiv = document.getElementById('confirmAccount');
+  const confirmDiv = window.document.getElementById('confirmAccount');
   confirmDiv.innerHTML = `<p>Your Account Is Created,` +  userName + `</p>` + `<a href="profile.ejs">Click Here to Go to Your Profile</a>`;
 }
