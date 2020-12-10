@@ -8,11 +8,15 @@
         <h2>Database Results</h2>
         <ul>
         Hello there! I access the postgresql database for this app!<br>
-        <% results.forEach(function(r) { %>
+        <% result1.forEach(function(r) { %>
             <li>
                 <%= r.title_id %> -
                 <%= r.title_name %> -
                 <%= r.genre_type %> 
+                <% result2.forEach(function(r) { %>
+                    <%= r.genre_id %>
+                    <%= r.genre_name %>
+                <% } %>
                 <% if (r.type_tv) { %>
                 <%= r.type_tv %>
                 <% } %>
