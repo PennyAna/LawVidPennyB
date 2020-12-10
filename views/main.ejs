@@ -16,7 +16,7 @@
                 <% result2.forEach(function(r) { %>
                     <%= r.genre_id %>
                     <%= r.genre_name %>
-                <% } %>
+                <% }); %>
                 <% if (r.type_tv) { %>
                 <%= r.type_tv %>
                 <% } %>
@@ -25,7 +25,7 @@
                 <% } %>
                 <% if (r.type_other) {%>
                 <%= r.type_other %> 
-                <% }); %> 
+                <% } %> 
             </li>  
         <% });%>
            
