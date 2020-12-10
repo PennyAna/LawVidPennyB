@@ -90,7 +90,7 @@ app.get('/profile',
         const client = await pool.connect();
         const result = await client.query('SELECT * FROM login_table');
         const results = { 'results': (result) ? result.rows: null};
-        res.render('pages/main.ejs', results);
+        res.render('main.ejs', results);
         client.release();
     } catch (err) {
         console.error(err);
