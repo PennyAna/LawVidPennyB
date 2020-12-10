@@ -88,12 +88,9 @@ app.get('/profile',
   app.get('/main', async function(req, res) {
     try {
         const client = await pool.connect();
-        const result1 = await client.query('SELECT * FROM media_table');
-        const temp = result1.genre_type;
-        const result2 = await client.query(`SELECT * FROM genre_table WHERE genre_id == {$temp}`);
+        const result = await client.query('SELECT * FROM media_table');
         const results = { 
-          'result1': (result1) ? result1.rows: null,
-          'result2': (result2) ? result2.rows: null
+          'result': (result1) ? result1.rows: null
         };
         res.render('main.ejs', results);
         client.release();
