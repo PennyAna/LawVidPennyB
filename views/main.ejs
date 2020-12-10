@@ -8,29 +8,29 @@
         <h2>Database Results</h2>
         <ul>
         Hello there! I access the postgresql database for this app!<br>
-        <% result1.forEach(function(r) { %>
+        <%result1.forEach(function(r) {%>
             <li>
-                <%= r.title_id %> -
-                <%= r.title_name %> -
+                <%=r.title_id%> -
+                <%=r.title_name%> -
                
-                <% if (r.type_tv) { %>
-                <%= r.type_tv %>
-                <% } %>
-                <% if (r.type_film) {%> 
-                <%= r.type_film %> 
-                <% } %>
-                <% if (r.type_other) {%>
-                <%= r.type_other %> 
-                <% } %> 
-                <% });%> 
-                <% result2.forEach(function(s) { if ( %> 
-                    <%= r.genre_type %> 
-                    <% == %> 
-                    <%= s.genre_id %> 
-                    <% ) { %>
-                        <%= s.genre_name %>
-                    <% } %>
-                <% }); %>
+                <%if (r.type_tv) {%>
+                <%=r.type_tv%>
+                <%}%>
+                <%if (r.type_film) {%> 
+                <%=r.type_film%> 
+                <%}%>
+                <%if (r.type_other) {%>
+                <%=r.type_other%> 
+                <%}%> 
+                <%});%> 
+                <%result2.forEach(function(s) { if (%> 
+                    <%=r.genre_type%> 
+                    <%===%> 
+                    <%=s.genre_id%> 
+                    <%) {%>
+                        <%=s.genre_name%>
+                    <%}%>
+                <%});%>
             </li>  
         </ul>
     </div>
