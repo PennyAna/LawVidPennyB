@@ -3,6 +3,7 @@ const passport = require('passport');
 const Strategy = require('passport-local').Strategy;
 const path = require('path');
 const db = require('./db');
+const js = require('main.js');
 // Configure the local strategy for use by Passport.
 //
 // The local strategy require a `verify` function which receives the credentials
@@ -89,7 +90,7 @@ app.get('/profile',
     try {
         const client = await pool.connect();
         const result1 = await client.query('SELECT * FROM media_table');
-        const result2 = await client.query('SELECT * FROM genre_table');
+        const result2 = await client.query('SELECT * FROM genre_table WHERE genre_id == result1.genre_type');
         const results = { 
           'result1': (result1) ? result1.rows: null,
           'result2': (result2) ? result2.rows: null
