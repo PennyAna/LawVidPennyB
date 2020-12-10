@@ -10,15 +10,28 @@
         Hello there! I access the postgresql database for this app!<br>
         <% tableThree.forEach(function(three) { %>
             <li>
-                <%= three.id %>
-            </li>
-            <li>
-                <%= three.name %>
-            </li>
-            <li>
-                <%= three.email_address %>
+                <%= three.login_id %> -
+                <%= three.name %> -
+                <%= three.email_address %> 
             </li>
         </ul>
     </div>
-    </body>
-    </html>
+<!--     <form action="/createnew" method="post">
+        <div>
+            <label>Name:</label>
+            <input type="text" name="name" placeholder="John Doe"/><br/>
+        </div>
+        <div>
+            <label>Email:</label>
+            <input type="text" name="email" placeholder="john@example.com"/><br/>
+            </div>
+        <div>
+            <label>Password:</label>
+            <input type="password" name="password"/>
+        </div>
+            <div>
+            <input type="submit" value="Submit"/>
+        </div> 
+    </form>-->
+</body>
+</html>
