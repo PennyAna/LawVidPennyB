@@ -20,12 +20,9 @@
                 <%}
                 if (%><%=r.type_other%> <%) {%>
                     <%=r.type_other%> 
-                <%} 
-                result2.forEach(function(s) { 
-                if (%><%=r.genre_type%> <%===%> <%=s.genre_id%> <%) {%>
-                    <%=s.genre_name%>
-                <%}
-            }); });%>
+                if (%><%=r.genre_type%> <%- === )%>
+                <%}});%>
+                
             </li>  
         </ul>
     </div>
