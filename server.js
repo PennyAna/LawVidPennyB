@@ -85,12 +85,6 @@ app.get('/profile',
     res.render('profile.ejs', { user: req.user });
     console.log('profileget');
   });
-/*   app.get('/create', 
-    function(req, res) {
-      req.logout();
-      res.redirect('/createnew.ejs');
-      console.log('makenewget');
-    }); */
   app.get('/main', 
   async function(req, res) {
   try {
@@ -105,7 +99,7 @@ app.get('/profile',
           'tableThree': (tableThree) ? tableThree.rows: null, 
           'tableFour': (tableFour) ? tableFour.rows: null
       };
-      res.render('/views/main.ejs', results);
+      res.render('main.ejs', results);
       client.release();
   } catch (err) {
   console.error(err);
