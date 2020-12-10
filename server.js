@@ -3,7 +3,6 @@ const passport = require('passport');
 const Strategy = require('passport-local').Strategy;
 const path = require('path');
 const db = require('./db');
-const ejsLint = require('ejs-lint');
 // Configure the local strategy for use by Passport.
 //
 // The local strategy require a `verify` function which receives the credentials
