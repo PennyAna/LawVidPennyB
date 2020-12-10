@@ -9,18 +9,9 @@
         <ul>
         Hello there! I access the postgresql database for this app!<br>
             <li>
-            <%result.forEach(function(r) {%>
-                <%=r.title_id%>
-                <%=r.title_name%>
-                <%if (%><%=r.type_tv%> <%) {%>
-                    <%=r.type_tv%>
-                <%}
-                if (%><%=r.type_film%> <%) {%> 
-                    <%=r.type_film%> 
-                <%}
-                if (%><%=r.type_other%> <%) {%>
-                    <%=r.type_other%> 
-            <%}})%>  
+                <% results.forEach(function(r) { %>
+                    <li><%= r.title_id %> - <%= r.title_name %></li>
+                <% }); %>
             </li>  
         </ul>
     </div>
