@@ -36,39 +36,24 @@ exports.findByEmail = function(email, cb) {
     return cb(null, null);
   });
 } 
+const userName = '';
+const userEmail = '';
+const userId = '';
+const userPwd = '';
+document.getElementById('createBtn').addEventListener('click', makeNewAccount);
 
-/* exports.findUserByEmail = function(email, cb) {
-  process.nextTick(function() {
-    for (var i = 0, len = records.length; i < len; i++) {
-      var record = records[i];
-      if (record.email === email) {
-        return cb(null, record);
-      }
-    }
-    return cb(null, null);
-  });
-} */
-/* 
-exports.simpleCreate = function(email, password, name, cb) {
-  // check if exists; and return error if it does
-  for (var i = 0, len = records.length; i < len; i++) {
-    var record = records[i];
-    if (record.email === email) {
-      cb(new Error('email' + email + ' already exists'));
-    }
-    else {
-      return partTwo(email, password, name, cb)
-    }
-
-  partTwo = function(email, password, name, cb) {
-          partThree(email, password, name, cb)
-      })
-  }
-
-  partThree = function(email, password, cb) {
-  db.query(
-          cb(null, (users.length == 1) ? users[0] : false)
-      })
-  }
-  //need to insert new account info into record and return info to be displayed
-  //once local db works, utilize sql commands to check, insert, and retrieve in same fashion */
+function makeNewAccount() {
+  userName = document.getElementById('inputName').value;
+  userEmail = document.getElementById('inputEmail').value;
+  userPwd = document.getElementById('inputPwd').value;
+  userId = records.length;
+  newRecord = {
+    id: userId, 
+    name: userName, 
+    email: userEmail, 
+    password: userPwd      
+  };
+  records = records.concat(newRecord);
+  const confirmDiv = document.getElementById('confirmAccount');
+  confirmDiv.innerHTML = `<p>Your Account Is Created,` +  userName + `</p>` + `<a href="profile.ejs">Click Here to Go to Your Profile</a>`;
+}

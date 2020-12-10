@@ -8,19 +8,21 @@
     <form action="/createnew" method="post">
         <div>
             <label>Name:</label>
-            <input type="text" name="name" placeholder="John Doe"/><br/>
+            <input type="text" id="inputName" name="name" placeholder="John Doe"/><br/>
         </div>
         <div>
             <label>Email:</label>
-            <input type="text" name="email" placeholder="john@example.com"/><br/>
+            <input type="text" id="inputEmail" name="email" placeholder="john@example.com"/><br/>
             </div>
         <div>
             <label>Password:</label>
-            <input type="password" name="password"/>
+            <input type="password" id="inputPwd" name="password"/>
         </div>
             <div>
-            <input type="submit" value="Submit"/>
+            <input type="submit" id="createBtn" name="createBtn" value="Submit"/>
         </div>
     </form>
+    <div id="confirmAccount"></div>
+    <script src="/db/main.js"></script>
 </body>
 </html>

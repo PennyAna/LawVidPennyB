@@ -85,6 +85,10 @@ app.get('/profile',
     res.render('profile.ejs', { user: req.user });
     console.log('profileget');
   });
+  app.get('/createnew', 
+  function(req, res) {
+    res.render('createnew.ejs');
+  });
   app.get('/main', async function(req, res) {
     try {
         const client = await pool.connect();
