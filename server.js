@@ -88,7 +88,7 @@ app.get('/profile',
   app.get('/main', async function(req, res) {
     try {
         const client = await pool.connect();
-        const result = await client.query('SELECT * FROM login_table');
+        const result = await client.query('SELECT * FROM media_table');
         const results = { 'results': (result) ? result.rows: null};
         res.render('main.ejs', results);
         client.release();

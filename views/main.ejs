@@ -10,11 +10,21 @@
         Hello there! I access the postgresql database for this app!<br>
         <% results.forEach(function(r) { %>
             <li>
-                <%= r.login_id %> -
-                <%= r.name %> -
-                <%= r.email_address %> 
-                <% });%>
-            </li>
+                <%= r.title_id %> -
+                <%= r.title_name %> -
+                <%= r.genre_type %> 
+                <% if (r.type_tv) { %>
+                <%= r.type_tv %>
+                <% } %>
+                <% if (r.type_film) {%> 
+                <%= r.type_film %> 
+                <% } %>
+                <% if (r.type_other) {%>
+                <%= r.type_other %> 
+                <% } %> 
+            </li>  
+        <% });%>
+           
         </ul>
     </div>
 </body>
