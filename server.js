@@ -90,7 +90,7 @@ app.get('/profile',
         const client = await pool.connect();
         const result = await client.query('SELECT * FROM media_table');
         const results = { 
-          'result': (result1) ? result1.rows: null
+          'result': (result) ? result.rows: null
         };
         res.render('main.ejs', results);
         client.release();
