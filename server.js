@@ -85,20 +85,18 @@ app.get('/profile',
     res.render('profile.ejs', { user: req.user });
     console.log('profileget');
   });
-  app.get('/main', 
-  async function(req, res) {
-  try {
-      const client = await pool.connect();
-      const tableThree = await client.query('SELECT * FROM login_table');
-      const results = { 
-          'tableThree': (tableThree) ? tableThree.rows: null
-      };
-      res.render('main.ejs', results);
-      client.release();
-  } catch (err) {
-  console.error(err);
-  res.send("Error " + err);
-  }});//=main
+  app.get('/main', async function(req, res) {
+    try {
+        const client = await pool.connect();
+        const result = await client.query('SELECT * FROM login_table');
+        const results = { 'results': (result) ? result.rows: null};
+        res.render('pages/main.ejs', results);
+        client.release();
+    } catch (err) {
+        console.error(err);
+        res.send("Error " + err);
+    }
+})
 const {Pool} = require('pg');
 const pool = new Pool({
 connectionString: process.env.DATABASE_URL, 

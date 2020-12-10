@@ -8,11 +8,11 @@
         <h2>Database Results</h2>
         <ul>
         Hello there! I access the postgresql database for this app!<br>
-        <% tableThree.forEach(function(three) { %>
+        <% results.forEach(function(r) { %>
             <li>
-                <%= three.login_id %> -
-                <%= three.name %> -
-                <%= three.email_address %> 
+                <%= r.login_id %> -
+                <%= r.name %> -
+                <%= r.email_address %> 
             </li>
         </ul>
     </div>
