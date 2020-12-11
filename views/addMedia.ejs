@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body> 
+    <!--this form needs to connect to the IMDB API-->
+    <form id="addInfoForm" class="forms" method="POST" action="/addMedia">
+        <label for="media_title">Media Title: </label>
+        <input type="text" id="media_title"/>
+        <br>  
+        <button id="addInfoMedia" type="submit">Search for Title Match</button>
+    </form>
+    <!--there needs to be a div here to display IMDB options (limit to top 10) with buttons for choice-->
+    <!--this form needs to submit all data to database, also needs to be a snippet? to be included and auto-populated when choice clicked-->
+    <form id="addMediaForm" class="forms" method="POST" action="/postMedia">    
+        <label for="pub_year">Publication Year (1950-2020): </label>
+        <input id="pub_year" type="number" max="2020" min="1950" step="1"/>
+
+        <label for="image_link">Media Image: </label>
+        <input id="image_link" type="url"/>
+
+        <label for="genre_type"></label>
+        <input id="genre_type"/>
+
+        <label for="description">Media Description</label>
+        <input type="textarea" id="description"/>
+
+        <label for="media_type">Media Type: </label>
+        <label for="tv_type">TV</label><br>
+        <input type="radio" id="tv_type" name="media_type" value="TV"/>
+        <label for="film_type">Film</label><br>
+        <input type="radio" id="film_type" name="media_type" value="Film"/>
+        <label for="other_type">Other</label><br>
+        <input type="radio" id="other_type" name="media_type" value="Other"/>
+        <br><br>
+        
+        <button id="addMediaBtn" type="submit">Add Media to Database</button>
+    </form>
+</body>
+</html>

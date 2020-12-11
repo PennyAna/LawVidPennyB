@@ -4,25 +4,14 @@
     <% include ./partials/header.ejs %>
 </head>
 <body>
-    Yo. Yo.
-    <form action="/createnew" method="post">
-        <div>
+    <form class="forms" action="/createnew" method="post">
             <label>Name:</label>
             <input type="text" id="inputName" name="name" placeholder="John Doe"/><br/>
-        </div>
-        <div>
             <label>Email:</label>
             <input type="text" id="inputEmail" name="email" placeholder="john@example.com"/><br/>
-            </div>
-        <div>
             <label>Password:</label>
             <input type="password" id="inputPwd" name="password"/>
-        </div>
-            <div>
             <input type="submit" id="createBtn" name="createBtn" value="Submit"/>
-        </div>
     </form>
-    <div id="confirmAccount"></div>
-    <script src="/db/main.js"></script>
 </body>
 </html>

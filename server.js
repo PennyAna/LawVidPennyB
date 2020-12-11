@@ -89,6 +89,14 @@ app.get('/profile',
   function(req, res) {
     res.render('createnew.ejs');
   });
+  app.post('/addMedia', 
+  async function(req, res) {
+    try {
+      const client = await pool.connect();
+      const result = await client.query('INSERT INTO media_table (title_id, title_name')
+    }
+    res.redirect('/profile');
+  });
   app.get('/main', async function(req, res) {
     try {
         const client = await pool.connect();
@@ -103,6 +111,10 @@ app.get('/profile',
         res.send("Error " + err);
     }
 })
+
+
+
+
 const {Pool} = require('pg');
 const pool = new Pool({
 connectionString: process.env.DATABASE_URL, 
