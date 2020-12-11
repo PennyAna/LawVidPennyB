@@ -60,43 +60,26 @@ app.use(passport.session());
 app.get('/',
   function(req, res) {
     res.render('home.ejs', { user: req.user });
-    console.log('homeget');
   });
 app.get('/login',
   function(req, res){
     res.render('login.ejs');
-    console.log('loginget');
   });
   app.post('/login', 
   passport.authenticate('local', { failureRedirect: '/login' }),
   function(req, res) {
     res.redirect('/');
-    console.log('loginpost');
   });
 app.get('/logout',
   function(req, res){
     req.logout();
     res.redirect('/');
-    console.log('logoutget');
   });
 app.get('/profile',
   require('connect-ensure-login').ensureLoggedIn(),
   function(req, res){
     res.render('profile.ejs', { user: req.user });
-    console.log('profileget');
   });
-  // app.get('/createnew', 
-  // function(req, res) {
-  //   res.render('createnew.ejs');
-  // });
-  // app.post('/addMedia', 
-  // async function(req, res) {
-  //   try {
-  //     const client = await pool.connect();
-  //     const result = await client.query('INSERT INTO media_table (title_id, title_name')
-  //   }
-  //   res.redirect('/profile');
-  // });
   app.get('/main', async function(req, res) {
     try {
         const client = await pool.connect();

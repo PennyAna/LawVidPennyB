@@ -36,24 +36,3 @@ exports.findByEmail = function(email, cb) {
     return cb(null, null);
   });
 } 
-/* const userName = '';
-const userEmail = '';
-const userId = '';
-const userPwd = '';
-window.document.getElementById('createBtn').addEventListener('click', makeNewAccount);
-
-function makeNewAccount() {
-  userName = window.document.getElementById('inputName').value;
-  userEmail = window.document.getElementById('inputEmail').value;
-  userPwd = window.document.getElementById('inputPwd').value;
-  userId = records.length;
-  newRecord = {
-    id: userId, 
-    name: userName, 
-    email: userEmail, 
-    password: userPwd      
-  };
-  records = records.concat(newRecord);
-  const confirmDiv = window.document.getElementById('confirmAccount');
-  confirmDiv.innerHTML = `<p>Your Account Is Created,` +  userName + `</p>` + `<a href="profile.ejs">Click Here to Go to Your Profile</a>`;
-} */
