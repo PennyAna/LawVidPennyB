@@ -66,7 +66,7 @@ app.get('/login',
     res.render('login.ejs');
   });
   app.post('/login', 
-  passport.authenticate('local', { failureRedirect: '/login' }),
+  passport.authenticate('local', { failureRedirect: 'login.ejs' }),
   function(req, res) {
     res.redirect('/');
   });
