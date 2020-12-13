@@ -91,7 +91,7 @@ app.get('/profile',
         const results = { 
           'result': (result) ? result.rows: null
         };
-        res.render('partials/main.ejs', results);
+        res.render('pages/main.ejs', results);
         client.release();
     } catch (err) {
         console.error(err);
