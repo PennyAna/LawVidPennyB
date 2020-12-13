@@ -46,7 +46,8 @@ app.set(express.static(path.join(__dirname, '/public')));
 app.set(express.static(path.join(__dirname, '/')));
 app.set('port', (process.env.PORT || 5000));
 app.set('view engine', 'ejs');
-app.engine('html', require('ejs').renderFile);
+app.engine('text/html', require('ejs').renderFile);
+app.use(express.static(__dirname));
 // Use application-level middleware for common functionality, including
 // logging, parsing, and session handling.
 app.use(require('morgan')('combined'));

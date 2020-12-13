@@ -11,13 +11,18 @@
             </p>            
         <% } else { %>
             <p>
-                Hello, <%= user.name %>. Click <a href="/main">Here</a> 
-                to View the database
+                Hello, <%= user.name %><br> 
+                Click <a href="/main">Here</a> 
+                to View the Database
                 <!--reroute to db page-->
             </p>
             <p>
                 Or view your <input type="button" id="profileBtn" value="Profile"/>
+                <!--currently not working b/c else statement scope keeps var from being init-->
                 <!--trigger eventlistener to change profileDiv to visible from hidden-->
+            </p>
+            <p>
+                Or <a href="logout">Log Out</a>
             </p>
         <% } %>
     </div>
@@ -25,7 +30,9 @@
         <% include ../partials/login.ejs %>
     </div>
     <div id="profileDiv" class="hidden">
-        <% include ../partials/profile.ejs %>
+        <% if (user) { %> 
+            <% include ../partials/profile.ejs %> 
+            <% } %> 
     </div>
     <script src="../../public/main.js"></script>
 </body>
