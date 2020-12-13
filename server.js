@@ -59,11 +59,14 @@ app.use(passport.session());
 // Define routes.
 app.get('/',
   function(req, res) {
-    res.render('/views/index.html', { user: req.user });
+    res.render('index.html', { user: req.user });
   });
+app.get('/home', function(req, res) {
+  res.render('partials/home.ejs', {user: req.user});
+});
 app.get('/login',
   function(req, res){
-    res.render('login.ejs');
+    res.render('partials/login.ejs');
   });
   app.post('/login', 
   passport.authenticate('local', { failureRedirect: '/login' }),
@@ -78,7 +81,7 @@ app.get('/logout',
 app.get('/profile',
   require('connect-ensure-login').ensureLoggedIn(),
   function(req, res){
-    res.render('profile.ejs', { user: req.user });
+    res.render('partials/profile.ejs', { user: req.user });
   });
   app.get('/main', async function(req, res) {
     try {
@@ -87,7 +90,7 @@ app.get('/profile',
         const results = { 
           'result': (result) ? result.rows: null
         };
-        res.render('main.ejs', results);
+        res.render('partials/main.ejs', results);
         client.release();
     } catch (err) {
         console.error(err);
