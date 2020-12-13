@@ -65,7 +65,7 @@ app.get('/login',
     res.render('partials/login.ejs');
   });
   app.post('/login', 
-  passport.authenticate('local', { failureRedirect: 'partials/login' }),
+  passport.authenticate('local', { failureRedirect: 'partials/login.ejs' }),
   function(req, res) {
     res.redirect('/');
   });
@@ -77,7 +77,7 @@ app.get('/logout',
 app.get('/add', 
 function(req, res) {
   res.render('pages/add.ejs');
-});
+})
 app.get('/profile',
   require('connect-ensure-login').ensureLoggedIn(),
   function(req, res){

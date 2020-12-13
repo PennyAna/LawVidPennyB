@@ -8,70 +8,23 @@ body {
   margin-left:25%;
   margin-right:25%;
 }
-div {
-  color: #291844;
-  background-color: #a45ee5;
-  margin: 0px;
-}
-.jumbotron {
-  background: #401685;
-  color: white;
-  padding-bottom: 10px;
-}
-.jumbotron p {
-color: #d9ccee;
-max-width: 75%;
-margin: 1em auto 2em; 
-}
-h1 {
-  background-color: rgb(255, 129, 71);
-}  
-h2 {
-  background-color: rgb(255, 129, 71);
-}
-.postalLabel {
-  color: #291844;
-  background-color: #a45ee5;
-  width: 100%;
-}
-.container {
-  background-color: #a45ee5;
 
-}
-.postalForm {
-  color: #291844;
-}
-.postalSet {
-
-}
-legend {
-
-}
-#postalType {
-
-}
-#postalType.select {
-
-}
-.postalBtn {
-  background-color: tomato;
-  color: #291844;
-}
-.postalWeightGrp {
+.hidden {
   display: none;
 }
-#postalWeight1 {
-  display: none;
-}
-#postalWeight2 {
-  display: none;
-}
-#priceDiv {
-  margin: 0px;
-  padding-bottom: 10px;
-  border-bottom: solid 20px #401685;
-}
-#pPrice {
-
+.visible {
+  display: block;
 }
 
+#loginBtn {
+
+}
+#profileBtn {
+
+}
+#loginDiv {
+
+}
+#profileDiv {
+  
+}
