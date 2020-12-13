@@ -6,13 +6,10 @@
 <body>
     <div class="visible">
         <% if (!user) { %>
-            <p>Welcome! Please <a href="/login">log in</a>.</p>
-        <% } if else { %>
+            <p>Welcome! Please <a href="/login">log in</a>.</p>            
+        <% } else { %>
             <p>Hello, <%= user.name %>. View the <a href="/main">database</a>.</p>
-        <% } %>
-            <% } else { %>
-            <p>Hello, <%= user.name %>. View your <a href="/profile">profile</a>.</p>
-
+            <!-- <p>Or view your <a href="/profile"> profile</a>.</p> -->
         <% } %>
     </div>
     <div class="hidden">
