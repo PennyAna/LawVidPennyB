@@ -41,7 +41,7 @@ passport.deserializeUser(function(id, cb) {
 });
 // Create a new Express application.
 const app = express();
-app.set(express.static(path.join(__dirname, '/views')));
+app.set('views', path.join(__dirname, '/views'));
 app.set(express.static(path.join(__dirname, '/public')));
 app.set(express.static(path.join(__dirname, '/')));
 app.set('port', (process.env.PORT || 5000));
@@ -59,14 +59,14 @@ app.use(passport.session());
 // Define routes.
 app.get('/',
   function(req, res) {
-    res.render('./views/pages/index.html');
+    res.render('index.ejs');
   });
 app.get('/home', function(req, res) {
-  res.render('./views/partials/home.ejs', {user: req.user});
+  res.render('home.ejs', {user: req.user});
 });
 app.get('/login',
   function(req, res){
-    res.render('./views/partials/login.ejs');
+    res.render('login.ejs');
   });
   app.post('/login', 
   passport.authenticate('local', { failureRedirect: '/login' }),
@@ -81,7 +81,7 @@ app.get('/logout',
 app.get('/profile',
   require('connect-ensure-login').ensureLoggedIn(),
   function(req, res){
-    res.render('./views/partials/profile.ejs', { user: req.user });
+    res.render('profile.ejs', { user: req.user });
   });
   app.get('/main', async function(req, res) {
     try {
@@ -90,7 +90,7 @@ app.get('/profile',
         const results = { 
           'result': (result) ? result.rows: null
         };
-        res.render('./views/partials/main.ejs', results);
+        res.render('.main.ejs', results);
         client.release();
     } catch (err) {
         console.error(err);
