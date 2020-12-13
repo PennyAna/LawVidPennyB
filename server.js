@@ -87,7 +87,7 @@ app.post('/addMedia',
       const client = await pool.connect();
       await client.query(query);
       client.release();
-      console.log(res.title_id);
+      console.log("Bubbles Bubbles Bubbles", res.title_id);
     }catch (err) {
       console.error(err);
       res.send("Error" + err);
