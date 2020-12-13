@@ -57,19 +57,15 @@ app.use(require('express-session')({ secret: 'keyboard cat', resave: false, save
 app.use(passport.initialize());
 app.use(passport.session());
 // Define routes.
-app.get('/',
-  function(req, res) {
-    res.render('index.ejs');
-  });
-app.get('/home', function(req, res) {
-  res.render('home.ejs', {user: req.user});
+app.get('/', function(req, res) {
+  res.render('pages/index.ejs', {user: req.user});
 });
 app.get('/login',
   function(req, res){
-    res.render('login.ejs');
+    res.render('partials/login.ejs');
   });
   app.post('/login', 
-  passport.authenticate('local', { failureRedirect: '/login' }),
+  passport.authenticate('local', { failureRedirect: 'partials/login' }),
   function(req, res) {
     res.redirect('/');
   });
@@ -81,7 +77,7 @@ app.get('/logout',
 app.get('/profile',
   require('connect-ensure-login').ensureLoggedIn(),
   function(req, res){
-    res.render('profile.ejs', { user: req.user });
+    res.render('partials/profile.ejs', { user: req.user });
   });
   app.get('/main', async function(req, res) {
     try {
@@ -90,7 +86,7 @@ app.get('/profile',
         const results = { 
           'result': (result) ? result.rows: null
         };
-        res.render('.main.ejs', results);
+        res.render('partials/main.ejs', results);
         client.release();
     } catch (err) {
         console.error(err);

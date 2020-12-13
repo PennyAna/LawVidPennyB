@@ -1,10 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <% include ../views/partials/header.ejs %>
+    <% include ../partials/header.ejs %>
 </head>
 <body>
-    <% include ../views/partials/login.ejs %>
-    <% include ../views/partials/main.ejs %>
+    <div class="visible">
+        <% if (!user) { %>
+            <p>Welcome! Please <a href="/login">log in</a>.</p>
+        <% } if else { %>
+            <p>Hello, <%= user.name %>. View the <a href="/main">database</a>.</p>
+        <% } %>
+            <% } else { %>
+            <p>Hello, <%= user.name %>. View your <a href="/profile">profile</a>.</p>
+
+        <% } %>
+    </div>
+    <div class="hidden">
+
+    </div>
+    <div class="hidden">
+
+    </div>
 </body>
 </html>
