@@ -74,6 +74,10 @@ app.get('/logout',
     req.logout();
     res.redirect('/');
   });
+app.get('/add', 
+function(req, res) {
+  res.render('pages/add.ejs');
+});
 app.get('/profile',
   require('connect-ensure-login').ensureLoggedIn(),
   function(req, res){
