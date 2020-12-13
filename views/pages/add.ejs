@@ -7,18 +7,18 @@
 <body> 
     <!--initial build: grab title/type-->
     <!--this form needs to connect to the IMDB API-->
-    <form id="addInfoForm" class="forms"  method="POST" action="">
+    <form id="addInfoForm" class="forms"  method="POST" action="/addMedia">
         <label for="media_title">Media Title: </label>
         <input type="text" id="media_title"/>
         <br><br>
-        <label for="media_type">Media Type: </label>
+<!--         <label for="media_type">Media Type: </label>
         <label for="tv_type">TV</label><br>
         <input type="radio" id="tv_type" name="media_type" value="TV"/>
         <label for="film_type">Film</label><br>
         <input type="radio" id="film_type" name="media_type" value="Film"/>
         <label for="other_type">Other</label><br>
         <input type="radio" id="other_type" name="media_type" value="Other"/>
-        <br><br>
+        <br><br> -->
         <button id="addInfoMedia" type="submit">Search for Title Match</button>
     </form>
     <!--there needs to be a div here to display IMDB options (limit to top 10) with buttons for choice-->

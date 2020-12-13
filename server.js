@@ -79,11 +79,25 @@ app.get('/add',
 function(req, res) {
   res.render('pages/add.ejs');
 })
-app.get('/profile',
+app.post('/addMedia',
+  async function(req, res) {
+    try {
+      const query = "INSERT INTO media_table (title_name, type_tv, type_film, type_other) VALUES (req.media_title, 0, 1, 0)";
+      const client = await pool.connect();
+      await client.query(query);
+      client.release();
+      console.log(res.title_id);
+    }catch (err) {
+      console.error(err);
+      res.send("Error" + err);
+    }
+  })
+  app.get('/profile',
   require('connect-ensure-login').ensureLoggedIn(),
   function(req, res){
     res.render('partials/profile.ejs', { user: req.user });
   });
+
   app.get('/main', async function(req, res) {
     try {
         const client = await pool.connect();
