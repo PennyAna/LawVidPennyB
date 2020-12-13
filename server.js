@@ -82,8 +82,7 @@ function(req, res) {
 app.post('/addMedia',
   async function(req, res) {
     try {
-      const media_name = req.media_title;
-      const query = "INSERT INTO media_table (title_name, type_tv, type_film, type_other) VALUES ('"+media_name+"', 'false', 'true', 'false')";
+      const query = "INSERT INTO media_table (title_name, type_tv, type_film, type_other) VALUES (?, false, true, false)", [req.body.media_title];
       const client = await pool.connect();
       await client.query(query);
       client.release();
