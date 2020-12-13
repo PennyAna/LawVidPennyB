@@ -82,13 +82,10 @@ function(req, res) {
 app.post('/addMedia',
   async function(req, res) {
     try {
-      const formVar = req.body.media_title;
-      console.log("Bubbles Bubbles Bubbles", formVar, req.body.media_title);
-      const query = "INSERT INTO media_table (title_name, type_tv, type_film, type_other) VALUES ( " + formVar + ", 'false', 'true', 'false')";
+      const query = "INSERT INTO media_table (title_name, type_tv, type_film, type_other) VALUES ( 'Africa Screams', 'false', 'true', 'false')";
       const client = await pool.connect();
       await client.query(query);
       client.release();
-      console.log("Bubbles Bubbles Bubbles", res.title_id);
     }catch (err) {
       console.error(err);
       res.send("Error" + err);
