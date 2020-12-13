@@ -1,7 +1,7 @@
 {
-  "name": "postage_app",
+  "name": "lawrence_video",
   "version": "0.3.0",
-  "description": "postal rates assignment",
+  "description": "Lawrence Video Database",
   "engines": {
     "node": "12.x",
     "npm": "6.14.8"
