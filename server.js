@@ -1,12 +1,12 @@
-const bodyparser = require('body-parser');
+const bodyParser = require('body-parser');
 const express = require('express');
 const passport = require('passport');
 const Strategy = require('passport-local').Strategy;
 const path = require('path');
 const db = require('./public/db');
 //bodyparser
-var urlencodedParser = bodyparser.urlencoded({extended: false});
-var jsonParser = bodyparser.json();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 // Configure the local strategy for use by Passport.
 //
 // The local strategy require a `verify` function which receives the credentials
