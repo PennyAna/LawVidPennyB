@@ -120,7 +120,7 @@ app.get('/searchGenre',
   async function(req, res) {
     try {
       const client = await pool.connect();
-      const result = await client.query(`SELECT * FROM media_table WHERE genre_type = '1'`);
+      const result = await client.query(`SELECT * FROM media_table WHERE genre_type = 1`);
       const results = {
         'result': (result) ? result.rows:null
       };
