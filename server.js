@@ -122,7 +122,7 @@ app.post('/addMedia',
 app.get('/searchGenre', 
   async function(req, res) {
     try {
-      const choice = req.body.genre_input.value;
+      const choice = req.body.genre_input;
       const genre = filterGenre(choice);
       const client = await pool.connect();
       const result = await client.query(genre);
@@ -139,7 +139,7 @@ app.get('/searchGenre',
 app.get('/searchType', 
   async function(req, res) {
     try {
-      const choice = req.body.typeInput.value;
+      const choice = req.body.typeInput;
       const type = filterType(choice);
       const client = await pool.connect();
       const resultFilm = await client.query(type)
