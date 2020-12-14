@@ -120,9 +120,10 @@ app.post('/addMedia',
         res.send("Error " + err);
     }
 });
-app.get('/searchGenre/:', 
+app.get('/searchGenre', 
   async function(req, res) {
     try {
+      console.log("Bubbles Bubbles Bubbles" + req.body.genre_input);
       let choice = filterGenre(req.body.genre_input);
       const genre = choice;
       const client = await pool.connect();
@@ -140,6 +141,7 @@ app.get('/searchGenre/:',
 app.get('/searchType', 
   async function(req, res) {
     try {
+      console.log("Bubbles Bubbles Bubbles" + req.body.typeInput);
       let choice = filterType(req.body.typeInput);
       const type = choice;
       const client = await pool.connect();
