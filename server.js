@@ -4,6 +4,8 @@ const passport = require('passport');
 const Strategy = require('passport-local').Strategy;
 const path = require('path');
 const db = require('./public/db');
+// Create a new Express application.
+const app = express();
 //bodyparser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -43,8 +45,7 @@ passport.deserializeUser(function(id, cb) {
     cb(null, user);
   });
 });
-// Create a new Express application.
-const app = express();
+
 app.set('views', path.join(__dirname, '/views'));
 app.set(express.static(path.join(__dirname, '/public')));
 app.set(express.static(path.join(__dirname, '/')));
