@@ -89,7 +89,8 @@ app.post('/addMedia',
       const client = await pool.connect();
       await client.query(query);
       client.release();
-    }catch (err) {
+    }
+    catch (err) {
       console.error(err);
       res.send("Error" + err);
     }
@@ -100,8 +101,9 @@ app.post('/addMedia',
     res.render('partials/profile.ejs', { user: req.user });
   });
 
-  app.get('/searchAll', async function(req, res) {
-    try {
+  app.get('/searchAll', 
+    async function(req, res) {
+      try {
         const client = await pool.connect();
         const result = await client.query('SELECT * FROM media_table ORDER BY title_name ASC');
         const results = { 
@@ -114,7 +116,8 @@ app.post('/addMedia',
         res.send("Error " + err);
     }
 });
-app.get('/searchType', async function(req, res) {
+app.get('/searchType', 
+  async function(req, res) {
     try {
       const client = await pool.connect();
       const resultFilm = await client.query('SELECT * FROM media_table WHERE media_type = `film`');
