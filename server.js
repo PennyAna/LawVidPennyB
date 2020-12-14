@@ -116,11 +116,25 @@ app.post('/addMedia',
         res.send("Error " + err);
     }
 });
+app.get('searchGenre', 
+  async function(req, res) {
+    try {
+      const client = await pool.connect();
+      const result = await client.query('SELECT * FROM media_table WHERE genre_type = 1 ORDER BY title_name ASC');
+      const results = {
+        'result': (result) ? result.rows:null
+      };
+    } catch (err) {
+      console.error(err);
+      res.send("Error " + err);
+    }
+  });
 app.get('/searchType', 
   async function(req, res) {
     try {
       const client = await pool.connect();
-      const resultFilm = await client.query(`SELECT * FROM media_table WHERE media_type = 'film'`);
+      const resultFilm = await client.query(`SELECT * FROM media_table WHERE media_type = 'film' ORDER BY title_name ASC`);
+      //need lang here to grab type from form and search by type
       const results = {
         'resultFilm': (resultFilm) ? resultFilm.rows: null
       }
