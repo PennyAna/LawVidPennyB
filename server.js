@@ -124,6 +124,8 @@ app.get('searchGenre',
       const results = {
         'result': (result) ? result.rows:null
       };
+      res.render('pages/genre.ejs', results);
+      client.release();
     } catch (err) {
       console.error(err);
       res.send("Error " + err);
