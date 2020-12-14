@@ -116,7 +116,7 @@ app.post('/addMedia',
         res.send("Error " + err);
     }
 });
-app.get('searchGenre', 
+app.get('/searchGenre', 
   async function(req, res) {
     try {
       const client = await pool.connect();
