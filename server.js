@@ -114,7 +114,7 @@ app.post('/addMedia',
 app.get('/searchType', async function(req, res) {
     try {
       const client = await pool.connect();
-      const resultFilm = await client.query('SELECT * FROM media_table WHERE type_film = true');
+      const resultFilm = await client.query('SELECT * FROM media_table WHERE media_type = `film`');
       const results = {
         'resultFilm': (resultFilm) ? resultFilm.rows: null
       };
