@@ -123,9 +123,41 @@ app.post('/addMedia',
 app.get('/searchGenre', 
   async function(req, res) {
     try {
-      console.log("Bubbles Bubbles Bubbles" + req.body.genre_input);
-      let choice = filterGenre(req.body.genre_input);
-      const genre = choice;
+      let genre = "";
+      switch(req.body.genre_input) {
+        case 'Action': 
+          genre = `SELECT * FROM media_table WHERE genre_type = 'Action'`;
+        break;
+        case 'Science Fiction': 
+          genre = `SELECT * FROM media_table WHERE genre_type = 'Science Fiction'`;
+        break;
+        case 'Fantasy':  
+          genre = `SELECT * FROM media_table WHERE genre_type = 'Fantasy'`;
+        break;
+        case 'Comedy': 
+          genre = `SELECT * FROM media_table WHERE genre_type = 'Comedy'`;
+        break;
+        case 'Romance': 
+          genre = `SELECT * FROM media_table WHERE genre_type = 'Romance'`;
+        break;
+        case 'Western':
+          genre = `SELECT * FROM media_table WHERE genre_type = 'Western'`; 
+        break;
+        case 'Anime':
+          genre = `SELECT * FROM media_table WHERE genre_type = 'Anime'`; 
+        break;
+        case 'Animation': 
+          genre = `SELECT * FROM media_table WHERE genre_type = 'Animation'`;
+        break;
+        case 'Drama':
+          genre = `SELECT * FROM media_table WHERE genre_type = 'Drama'`; 
+        break;
+        case 'Game':
+          genre = `SELECT * FROM media_table WHERE genre_type = 'Game'`;
+        default:
+          genre = `SELECT * FROM media_table ORDER BY genre_type`; 
+        break;
+      };
       const client = await pool.connect();
       const result = await client.query(genre);
       const results = {
@@ -141,9 +173,21 @@ app.get('/searchGenre',
 app.get('/searchType', 
   async function(req, res) {
     try {
+      let type = "";
+      switch(req.body.typeInput) {
+        case 'film': 
+          type = `SELECT * FROM media_table WHERE media_type = 'film' ORDER BY title_name ASC`;
+        break;
+        case 'tv': 
+          type = `SELECT * FROM media_table WHERE media_type = 'tv' ORDER BY title_name ASC`;
+        break;
+        case 'game': 
+          type = `SELECT * FROM media_table WHERE media_type = 'game' ORDER BY title_name ASC`;
+        break;
+        default: 
+          type = `SELECT * FROM media_table ORDER BY media_type ASC`;
+      }
       console.log("Bubbles Bubbles Bubbles" + req.body.typeInput);
-      let choice = filterType(req.body.typeInput);
-      const type = choice;
       const client = await pool.connect();
       const result = await client.query(type);
       const results = {
@@ -167,60 +211,3 @@ ssl: {
 app.listen(app.get('port'), function() {
 console.log('Now listening for connections on port: ', app.get('port'));
 });
-
-function filterGenre(choice) {
-  let myChoice = "";
-  switch(choice) {
-    case 'Action': 
-      myChoice = `SELECT * FROM media_table WHERE genre_type = 'Action'`;
-    break;
-    case 'Science Fiction': 
-      myChoice = `SELECT * FROM media_table WHERE genre_type = 'Science Fiction'`;
-    break;
-    case 'Fantasy':  
-      myChoice = `SELECT * FROM media_table WHERE genre_type = 'Fantasy'`;
-    break;
-    case 'Comedy': 
-      myChoice = `SELECT * FROM media_table WHERE genre_type = 'Comedy'`;
-    break;
-    case 'Romance': 
-      myChoice = `SELECT * FROM media_table WHERE genre_type = 'Romance'`;
-    break;
-    case 'Western':
-      myChoice = `SELECT * FROM media_table WHERE genre_type = 'Western'`; 
-    break;
-    case 'Anime':
-      myChoice = `SELECT * FROM media_table WHERE genre_type = 'Anime'`; 
-    break;
-    case 'Animation': 
-      myChoice = `SELECT * FROM media_table WHERE genre_type = 'Animation'`;
-    break;
-    case 'Drama':
-      myChoice = `SELECT * FROM media_table WHERE genre_type = 'Drama'`; 
-    break;
-    case 'Game':
-      myChoice = `SELECT * FROM media_table WHERE genre_type = 'Game'`;
-    default:
-      myChoice = `SELECT * FROM media_table ORDER BY genre_type`; 
-    break;
-  }
-  return myChoice;
-};
-
-function filterType(choice) {
-    let myType = "";
-  switch(choice) {
-    case 'film': 
-      myType = `SELECT * FROM media_table WHERE media_type = 'film' ORDER BY title_name ASC`;
-    break;
-    case 'tv': 
-      myType = `SELECT * FROM media_table WHERE media_type = 'tv' ORDER BY title_name ASC`;
-    break;
-    case 'game': 
-      myType = `SELECT * FROM media_table WHERE media_type = 'game' ORDER BY title_name ASC`;
-    break;
-    default: 
-      myType = `SELECT * FROM media_table ORDER BY media_type ASC`;
-  }
-  return myType;
-};
