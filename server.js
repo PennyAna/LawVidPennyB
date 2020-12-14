@@ -111,7 +111,24 @@ app.post('/addMedia',
         res.send("Error " + err);
     }
 });
-
+app.get('/searchType', async function(req, res) {
+    try {
+      const client = await pool.connect();
+      const resultTV = await client.query('SELECT * FROM media_table WHERE type_tv = true');
+      const resultFilm = await client.query('SELECT * FROM media_table WHERE type_film = true');
+      const resultOther = await client.query('SELECT * FROM media_table WHERE type_other = true');
+      const results = {
+        'resultTV': (resultTV) ? resultTV.rows: null,
+        'resultFilm': (resultFilm) ? resultFilm.rows: null, 
+        'resultOther': (resultOther) ? resultOther.rows: null
+      };
+      res.render('partials/type.ejs', results);
+      client.release();
+    } catch (err) { 
+      console.error(error);
+      res.send("Error " + err);
+    }
+  });
 
 const {Pool} = require('pg');
 const pool = new Pool({
