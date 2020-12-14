@@ -3,17 +3,11 @@
     <h2>Type Results</h2>
     Hello there! I access the postgresql database for this app!<br>
     <ul>
-            <% resultTV.forEach(function(r) { %>
-                <li><%= r.title_id %> - 
-                    <%= r.title_name %></li>
-            <% }); %>
+        <li>
             <% resultFilm.forEach(function(s) { %>
                 <li><%= s.title_id %> - 
                     <%= s.title_name %></li>
             <% }); %>
-            <% resultOther.forEach(function(t) { %>
-                <li><%= t.title_id %> - 
-                    <%= t.title_name %></li>
-            <% }); %> 
+        </li>
     </ul>
 </div>
