@@ -3,7 +3,9 @@
     <button type="submit">Add Media</button>
 </form><br><br>
     <form id="searchTypeForm" action="/searchType" method="GET">
-        <input type="text" id="typeInput"/>
+        <input type="radio" id="film" name="typeInput"/>
+        <input type="radio" id="tv" name="typeInput"/>
+        <input type="radio" id="game" name="typeInput"/>
         <button type="submit" id="typeBtn" >Search By Type</button>
     </form><br><br>
     <form id="searchAllForm" action="/searchAll" method="GET">
