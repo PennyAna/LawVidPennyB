@@ -123,7 +123,7 @@ app.get('/searchType',
       const resultFilm = await client.query('SELECT * FROM media_table WHERE media_type = `film`');
       const results = {
         'resultFilm': (resultFilm) ? resultFilm.rows: null
-      };
+      }
       res.render('pages/type.ejs', results);
       client.release();
     } catch (err) { 
