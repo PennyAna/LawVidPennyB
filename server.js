@@ -123,7 +123,7 @@ app.get('/searchGenre',
   async function(req, res) {
     try {
       const choice = req.body.genre_input;
-      const genre = filterGenre(choice);
+      let genre = filterGenre(choice);
       const client = await pool.connect();
       const result = await client.query(genre);
       const results = {
@@ -140,7 +140,7 @@ app.get('/searchType',
   async function(req, res) {
     try {
       const choice = req.body.typeInput;
-      const type = filterType(choice);
+      let type = filterType(choice);
       const client = await pool.connect();
       const resultFilm = await client.query(type)
       //need lang here to grab type from form and search by type
@@ -167,7 +167,7 @@ console.log('Now listening for connections on port: ', app.get('port'));
 });
 
 function filterGenre(choice) {
-  const myChoice = "";
+  let myChoice = "";
   switch(choice) {
     case 'Action': 
       myChoice = `SELECT * FROM media_table WHERE genre_type = 'Action'`;
@@ -197,7 +197,7 @@ function filterGenre(choice) {
       myChoice = `SELECT * FROM media_table WHERE genre_type = 'Drama'`; 
     break;
     case 'Game':
-      mychoice = `SELECT * FROM media_table WHERE genre_type = 'Game'`;
+      myChoice = `SELECT * FROM media_table WHERE genre_type = 'Game'`;
     default:
       myChoice = `SELECT * FROM media_table ORDER BY genre_type`; 
     break;
@@ -206,7 +206,7 @@ function filterGenre(choice) {
 }
 
 function filterType(choice) {
-  const myType = "";
+    let myType = "";
   switch(choice) {
     case 'film': 
       myType = `SELECT * FROM media_table WHERE media_type = 'film' ORDER BY title_name ASC`;;
