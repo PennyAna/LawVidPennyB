@@ -142,10 +142,9 @@ app.get('/searchType',
       const choice = req.body.typeInput;
       let type = filterType(choice);
       const client = await pool.connect();
-      const resultFilm = await client.query(type)
-      //need lang here to grab type from form and search by type
+      const result = await client.query(type);
       const results = {
-        'resultFilm': (resultFilm) ? resultFilm.rows: null
+        'result': (result) ? result.rows: null
       }
       res.render('pages/type.ejs', results);
       client.release();
@@ -209,14 +208,16 @@ function filterType(choice) {
     let myType = "";
   switch(choice) {
     case 'film': 
-      myType = `SELECT * FROM media_table WHERE media_type = 'film' ORDER BY title_name ASC`;;
+      myType = `SELECT * FROM media_table WHERE media_type = 'film' ORDER BY title_name ASC`;
     break;
     case 'tv': 
-      myType = `SELECT * FROM media_table WHERE media_type = 'tv' ORDER BY title_name ASC`;;
+      myType = `SELECT * FROM media_table WHERE media_type = 'tv' ORDER BY title_name ASC`;
     break;
     case 'game': 
-      myType = `SELECT * FROM media_table WHERE media_type = 'game' ORDER BY title_name ASC`;;  
+      myType = `SELECT * FROM media_table WHERE media_type = 'game' ORDER BY title_name ASC`;
     break;
+    default: 
+      myType = `SELECT * FROM media_table ORDER BY media_type ASC`;
   }
   return myType;
 }
