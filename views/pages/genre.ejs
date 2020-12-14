@@ -10,14 +10,13 @@
         </div>
         <div id="genreDiv">
             <h2>Genre Results</h2>
-        <ul>
-       <br>
-            <li>
-                <% result.forEach(function(r) { %>
-                    <li><%= r.genre_id %> - <%= r.genre_name %></li>
-                <% }); %>
-            </li>  
-        </ul>
+            <ul>
+                <li>
+                    <% result.forEach(function(r) { %>
+                        <li><%= r.genre_id %> - <%= r.genre_name %></li>
+                    <% }); %>
+                </li>  
+            </ul>
         </div>
     </div>
     <script src="../../public/index.js"></script>
