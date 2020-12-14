@@ -119,11 +119,11 @@ app.get('/searchType', async function(req, res) {
     const resultFilm = await client.query('SELECT * FROM media_table WHERE type_film = true');
     const resultOther = await client.query('SELECT * FROM media_table WHERE type_other = true');
     const results = {
-      'tv': (resultTV) ? resultTV.rows: null,
-      'film': (resultFilm) ? resultFilm.rows: null, 
-      'other': (resultOther) ? resultOther.rows: null
+      'resultTV': (resultTV) ? resultTV.rows: null,
+      'resultFilm': (resultFilm) ? resultFilm.rows: null, 
+      'resultOther': (resultOther) ? resultOther.rows: null
     };
-    res.render('partials/type.ejs', results);
+    res.render('pages/type.ejs', results);
     client.release();
   } catch (err) { 
     console.error(error);
