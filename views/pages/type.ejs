@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/header.ejs %>
+</head>
+<body>
+    <div class="container">
+        <a href="/add">Click Here to Add Media</a><br>
+        <% include ../partials/searchForms.ejs %>
+    </div>
+    <div id="typeDiv">
+        <h2>Type Results</h2>
+        <ul>
+            <li>
+                <% resultFilm.forEach(function(s) { %>
+                <li><%= s.title_id %> - 
+                    <%= s.title_name %>
+                </li>
+                <% }); %>
+            </li>
+        </ul>
+    </div>
+    <script src="../../public/index.js"></script>
+</body>
+</html>
+    

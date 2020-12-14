@@ -2,7 +2,7 @@ const express = require('express');
 const passport = require('passport');
 const Strategy = require('passport-local').Strategy;
 const path = require('path');
-const db = require('./db');
+const db = require('./public/db');
 // Configure the local strategy for use by Passport.
 //
 // The local strategy require a `verify` function which receives the credentials
@@ -104,7 +104,7 @@ app.post('/addMedia',
         const results = { 
           'result': (result) ? result.rows: null
         };
-        res.render('pages/main.ejs', results);
+        res.render('pages/search.ejs', results);
         client.release();
     } catch (err) {
         console.error(err);
@@ -118,7 +118,7 @@ app.get('/searchType', async function(req, res) {
       const results = {
         'resultFilm': (resultFilm) ? resultFilm.rows: null
       };
-      res.render('pages/main.ejs', results);
+      res.render('pages/type.ejs', results);
       client.release();
     } catch (err) { 
       console.error(error);
