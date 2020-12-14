@@ -100,11 +100,11 @@ app.post('/addMedia',
   app.get('/main', async function(req, res) {
     try {
         const client = await pool.connect();
-        const result = await client.query('SELECT * FROM media_table');
+        const result = await client.query('SELECT * FROM media_table ORDER BY title_name ASC');
         const results = { 
           'result': (result) ? result.rows: null
         };
-        res.render('pages/main.ejs', results);
+        res.render('partials/browse.ejs', results);
         client.release();
     } catch (err) {
         console.error(err);
