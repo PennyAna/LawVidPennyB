@@ -37,7 +37,7 @@
             <button type="submit" id="genreBtn">Search By Genre</button>
         </form>
          <!--general display div for all searches-->
-        <div id="typeDiv" class="hidden">
+        <div id="typeDiv" class="visible">
             <% include ../partials/type.ejs %>
             <!--alphabetical listing for searchAll, searchGenre, create dynamically w/alpha et results loop for li-->
           <!--   <ul id="alphaList" class="hidden"> alphaList == stretch goal
@@ -48,7 +48,7 @@
         <div id="browseDiv" class="visible">
             <% include ../partials/browse.ejs %>
         </div>
-        <div id="genreDiv" class="hidden">
+        <div id="genreDiv" class="visible">
             <% include ../partials/genre.ejs %>
         </div>
     </div>
