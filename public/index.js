@@ -1,21 +1,8 @@
-const login = document.getElementById('loginDiv');
-// const profile = document.getElementById('profileDiv');
-document.getElementById('loginBtn').addEventListener('click', changeLoginView);
-// document.getElementById('profileBtn').addEventListener('click', changeProfileView);
+const login = document.getElementById('profileDiv');
+document.getElementById('profileBtn').addEventListener('click', changeProfileView);
 
-function changeLoginView() {
-    if (login.className == 'hidden') {
-        login.className = 'visible';
+function changeProfileView() {
+    if (profile.className == 'hidden') {
+        profile.className = 'visible';
     }
-}
-// function changeProfileView() {
-//     if (profile.className == 'hidden') {
-//         profile.className = 'visible';
-//     }
-// }          
-
-// const displayDiv = document.getElementById('displayDiv');
-// displayDiv.innerText = "";
-// document.getElementById('').addEventListener('click', ));
-// document.getElementById('').addEventListener('click', ));
-// document.getElementById('').addEventListener('click', ));
+}          
