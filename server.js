@@ -4,6 +4,9 @@ const passport = require('passport');
 const Strategy = require('passport-local').Strategy;
 const path = require('path');
 const db = require('./public/db');
+//bodyparser
+var urlencodedParser = bodyparser.urlencoded({extended: false});
+var jsonParser = bodyparser.json();
 // Configure the local strategy for use by Passport.
 //
 // The local strategy require a `verify` function which receives the credentials
@@ -52,10 +55,7 @@ app.use(express.static(__dirname));
 // Use application-level middleware for common functionality, including
 // logging, parsing, and session handling.
 app.use(require('morgan')('combined'));
-app.use(require('body-parser').urlencoded({ extended: true }));
 app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
-app.use(bodyparser.urlencoded({extended:false}));
-app.use(bodyparser.json());
 // Initialize Passport and restore authentication state, if any, from the
 // session.
 app.use(passport.initialize());
@@ -85,7 +85,7 @@ function(req, res) {
 app.get('/browse', function(req, res) {
   res.render('pages/browse.ejs');
 });
-app.post('/addMedia',
+app.post('/addMedia', urlencodedParser, 
   async function(req, res) {
     try {
       const query = "INSERT INTO media_table (title_name, type_tv, type_film, type_other) VALUES ( 'Africa Screams', 'false', 'true', 'false')";
@@ -98,7 +98,7 @@ app.post('/addMedia',
       res.send("Error" + err);
     }
   });
-  app.get('/profile',
+  app.get('/profile', 
   require('connect-ensure-login').ensureLoggedIn(),
   function(req, res){
     res.render('partials/profile.ejs', { user: req.user });
@@ -119,11 +119,11 @@ app.post('/addMedia',
         res.send("Error " + err);
     }
 });
-app.get('/searchGenre', 
+app.get('/searchGenre/:', 
   async function(req, res) {
     try {
-      const choice = req.body.genre_input;
-      let genre = filterGenre(choice);
+      let choice = filterGenre(req.body.genre_input);
+      const genre = choice;
       const client = await pool.connect();
       const result = await client.query(genre);
       const results = {
@@ -139,8 +139,8 @@ app.get('/searchGenre',
 app.get('/searchType', 
   async function(req, res) {
     try {
-      const choice = req.body.typeInput;
-      let type = filterType(choice);
+      let choice = filterType(req.body.typeInput);
+      const type = choice;
       const client = await pool.connect();
       const result = await client.query(type);
       const results = {

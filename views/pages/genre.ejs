@@ -10,11 +10,21 @@
         </div>
         <div id="genreDiv">
             <h2>Genre Results</h2>
-            <ul>
-                    <% result.forEach(function(r) { %>
-                        <li><%= r.title_id %> - <%= r.title_name %></li>
-                    <% }); %>
-            </ul>
+            <table>
+                <tr>
+                    <th>Media ID</th>
+                    <th>Media Name</th>
+                    <th>Media Type</th>
+                    <th>Media Genre</th>
+                </tr>
+                <% result.forEach(function(s) { %>
+                <tr>
+                    <td><%= s.title_id %></td>
+                    <td><%= s.title_name %></td>
+                    <td><%= s.media_type %></td>
+                    <td>  <%= s.genre_type %></td><% }); %>
+                </tr>
+            </table>
         </div>
     </div>
 </body>
