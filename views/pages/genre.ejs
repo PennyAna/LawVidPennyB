@@ -5,11 +5,14 @@
 </head>
 <body>
     <div class="container">
-        <a href="/add">Click Here to Add Media</a><br>
-        <% include ../partials/searchForms.ejs %>
-    </div>
-    <div id="genreDiv">
-        <h2>Genre Results</h2>
+        <div id="addDiv">
+            <a href="/add">Click Here to Add Media</a><br>
+        </div>
+        <div id="formDiv">
+            <% include ../partials/searchForms.ejs %>
+        </div>
+        <div id="genreDiv">
+            <h2>Genre Results</h2>
         <!-- <ul>
        <br>
             <li>
@@ -18,7 +21,8 @@
                 <% }); %>
             </li>  
         </ul> -->
-        Yo. Genres Not Loading Yet.
+            Yo. Genres Not Loading Yet.
+        </div>
     </div>
     <script src="../../public/index.js"></script>
 </body>

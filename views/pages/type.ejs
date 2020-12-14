@@ -5,20 +5,24 @@
 </head>
 <body>
     <div class="container">
-        <a href="/add">Click Here to Add Media</a><br>
-        <% include ../partials/searchForms.ejs %>
-    </div>
-    <div id="typeDiv">
-        <h2>Type Results</h2>
-        <ul>
-            <li>
-                <% resultFilm.forEach(function(s) { %>
-                <li><%= s.title_id %> - 
+        <div id="addDiv">
+            <a href="/add">Click Here to Add Media</a><br>
+        </div>
+        <div id="formDiv">
+            <% include ../partials/searchForms.ejs %>
+        </div>
+        <div id="typeDiv">
+            <h2>Type Results</h2>
+            <ul>
+                <li>
+                    <% resultFilm.forEach(function(s) { %>
+                    <li><%= s.title_id %> - 
                     <%= s.title_name %>
+                    </li>
+                    <% }); %>
                 </li>
-                <% }); %>
-            </li>
-        </ul>
+            </ul>
+        </div>
     </div>
     <script src="../../public/index.js"></script>
 </body>
