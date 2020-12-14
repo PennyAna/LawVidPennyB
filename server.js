@@ -78,7 +78,10 @@ app.get('/logout',
 app.get('/add', 
 function(req, res) {
   res.render('pages/add.ejs');
-})
+});
+app.get('/browse', function(req, res) {
+  res.render('pages/browse.ejs');
+});
 app.post('/addMedia',
   async function(req, res) {
     try {
@@ -90,14 +93,14 @@ app.post('/addMedia',
       console.error(err);
       res.send("Error" + err);
     }
-  })
+  });
   app.get('/profile',
   require('connect-ensure-login').ensureLoggedIn(),
   function(req, res){
     res.render('partials/profile.ejs', { user: req.user });
   });
 
-  app.get('/main', async function(req, res) {
+  app.get('/searchAll', async function(req, res) {
     try {
         const client = await pool.connect();
         const result = await client.query('SELECT * FROM media_table ORDER BY title_name ASC');
