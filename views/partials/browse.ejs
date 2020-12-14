@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<div class="container">
+    <h2>Database Results</h2>
+    <ul>
+    Hello there! I access the postgresql database for this app!<br>
+        <li>
+            <% result.forEach(function(r) { %>
+                <li><%= r.title_id %> - <%= r.title_name %></li>
+            <% }); %>
+        </li>  
+    </ul>
+</div>

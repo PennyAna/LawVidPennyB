@@ -13,3 +13,9 @@ function changeLoginView() {
 //         profile.className = 'visible';
 //     }
 // }          
+
+// const displayDiv = document.getElementById('displayDiv');
+// displayDiv.innerText = "";
+// document.getElementById('').addEventListener('click', ));
+// document.getElementById('').addEventListener('click', ));
+// document.getElementById('').addEventListener('click', ));
