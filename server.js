@@ -202,7 +202,7 @@ function filterGenre(choice) {
     break;
   }
   return myChoice;
-}
+};
 
 function filterType(choice) {
     let myType = "";
@@ -220,4 +220,4 @@ function filterType(choice) {
       myType = `SELECT * FROM media_table ORDER BY media_type ASC`;
   }
   return myType;
-}
+};
