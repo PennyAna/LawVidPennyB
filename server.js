@@ -86,7 +86,7 @@ function(req, res) {
 app.get('/browse', function(req, res) {
   res.render('pages/browse.ejs');
 });
-app.post('/addMedia', urlencodedParser, 
+app.post('/addMedia',  
   async function(req, res) {
     try {
       const query = "INSERT INTO media_table (title_name, type_tv, type_film, type_other) VALUES ( 'Africa Screams', 'false', 'true', 'false')";
