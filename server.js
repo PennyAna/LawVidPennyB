@@ -1,3 +1,4 @@
+const bodyparser = require('body-parser');
 const express = require('express');
 const passport = require('passport');
 const Strategy = require('passport-local').Strategy;
@@ -53,6 +54,8 @@ app.use(express.static(__dirname));
 app.use(require('morgan')('combined'));
 app.use(require('body-parser').urlencoded({ extended: true }));
 app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
+app.use(bodyparser.urlencoded({extended:false}));
+app.use(bodyparser.json());
 // Initialize Passport and restore authentication state, if any, from the
 // session.
 app.use(passport.initialize());
@@ -119,8 +122,10 @@ app.post('/addMedia',
 app.get('/searchGenre', 
   async function(req, res) {
     try {
+      const choice = req.body.genre_input.value;
+      const genre = filterGenre(choice);
       const client = await pool.connect();
-      const result = await client.query(`SELECT * FROM media_table WHERE genre_type = 'Action'`);
+      const result = await client.query(genre);
       const results = {
         'result': (result) ? result.rows:null
       };
@@ -134,8 +139,10 @@ app.get('/searchGenre',
 app.get('/searchType', 
   async function(req, res) {
     try {
+      const choice = req.body.typeInput.value;
+      const type = filterType(choice);
       const client = await pool.connect();
-      const resultFilm = await client.query(`SELECT * FROM media_table WHERE media_type = 'film' ORDER BY title_name ASC`);
+      const resultFilm = await client.query(type)
       //need lang here to grab type from form and search by type
       const results = {
         'resultFilm': (resultFilm) ? resultFilm.rows: null
@@ -158,3 +165,58 @@ ssl: {
 app.listen(app.get('port'), function() {
 console.log('Now listening for connections on port: ', app.get('port'));
 });
+
+function filterGenre(choice) {
+  const myChoice = "";
+  switch(choice) {
+    case 'Action': 
+      myChoice = `SELECT * FROM media_table WHERE genre_type = 'Action'`;
+    break;
+    case 'Science Fiction': 
+      myChoice = `SELECT * FROM media_table WHERE genre_type = 'Science Fiction'`;
+    break;
+    case 'Fantasy':  
+      myChoice = `SELECT * FROM media_table WHERE genre_type = 'Fantasy'`;
+    break;
+    case 'Comedy': 
+      myChoice = `SELECT * FROM media_table WHERE genre_type = 'Comedy'`;
+    break;
+    case 'Romance': 
+      myChoice = `SELECT * FROM media_table WHERE genre_type = 'Romance'`;
+    break;
+    case 'Western':
+      myChoice = `SELECT * FROM media_table WHERE genre_type = 'Western'`; 
+    break;
+    case 'Anime':
+      myChoice = `SELECT * FROM media_table WHERE genre_type = 'Anime'`; 
+    break;
+    case 'Animation': 
+      myChoice = `SELECT * FROM media_table WHERE genre_type = 'Animation'`;
+    break;
+    case 'Drama':
+      myChoice = `SELECT * FROM media_table WHERE genre_type = 'Drama'`; 
+    break;
+    case 'Game':
+      mychoice = `SELECT * FROM media_table WHERE genre_type = 'Game'`;
+    default:
+      myChoice = `SELECT * FROM media_table ORDER BY genre_type`; 
+    break;
+  }
+  return myChoice;
+}
+
+function filterType(choice) {
+  const myType = "";
+  switch(choice) {
+    case 'film': 
+      myType = `SELECT * FROM media_table WHERE media_type = 'film' ORDER BY title_name ASC`;;
+    break;
+    case 'tv': 
+      myType = `SELECT * FROM media_table WHERE media_type = 'tv' ORDER BY title_name ASC`;;
+    break;
+    case 'game': 
+      myType = `SELECT * FROM media_table WHERE media_type = 'game' ORDER BY title_name ASC`;;  
+    break;
+  }
+  return myType;
+}
