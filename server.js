@@ -104,7 +104,7 @@ app.post('/addMedia',
         const results = { 
           'result': (result) ? result.rows: null
         };
-        res.render('partials/browse.ejs', results);
+        res.render('pages/main.ejs', results);
         client.release();
     } catch (err) {
         console.error(err);
@@ -118,7 +118,7 @@ app.get('/searchType', async function(req, res) {
       const results = {
         'resultFilm': (resultFilm) ? resultFilm.rows: null
       };
-      res.render('partials/type.ejs', results);
+      res.render('pages/main.ejs', results);
       client.release();
     } catch (err) { 
       console.error(error);
