@@ -118,18 +118,10 @@ app.get('/searchType', async function(req, res) {
     const resultTV = await client.query('SELECT * FROM media_table WHERE type_tv = true');
     const resultFilm = await client.query('SELECT * FROM media_table WHERE type_film = true');
     const resultOther = await client.query('SELECT * FROM media_table WHERE type_other = true');
-    const tv = {
-      'tv': (resultTV) ? resultTV.rows: null
-    };
-    const film = { 
-      'film': (resultFilm) ? resultFilm.rows: null};
-    const other = {
-      'other': (resultOther) ? resultOther.rows: null
-    };
     const results = {
-      'tv': tv, 
-      'film': film, 
-      'other': other
+      'tv': (resultTV) ? resultTV.rows: null,
+      'film': (resultFilm) ? resultFilm.rows: null, 
+      'other': (resultOther) ? resultOther.rows: null
     };
     res.render('partials/type.ejs', results);
     client.release();
