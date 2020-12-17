@@ -1,3 +1,6 @@
+exports.users = require('./users');
+exports.search = require('./search');
+
 document.getElementById('profileBtn').addEventListener('click', changeProfileView);
 const profile = document.getElementById('profileDiv');
 function changeProfileView() {
