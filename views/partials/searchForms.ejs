@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+<br><br>
 <form id="addLinkForm" method="GET" action="/add">
-    <button type="submit">Add Media</button>
+    <button type="submit" id="addBtn">Add Media</button>
 </form><br><br>
-    <form id="searchTypeForm" action="/searchType" method="GET">
+    <form id="searchTypeForm" action="searchType">
         <input type="radio" id="film" name="typeInput"/>
         <label for="film">Film</label>
         <input type="radio" id="tv" name="typeInput"/>
@@ -11,10 +12,14 @@
         <label for="game">Game</label><br>
         <button type="submit" id="typeBtn" >Search By Type</button>
     </form><br><br>
+
+
+    
     <form id="searchAllForm" action="/searchAll" method="GET">
         <button type="submit" id="browseBtn" >Browse All</button>
     </form><br><br>
-    <form id="searchGenreForm" action="/searchGenre" method="GET">
+
+    <form id="searchGenreForm" action="searchGenre" method="">
         <input type="radio" name="genreInput" id="1" value="Action"/>
         <label for="1">Action</label><br>
         <input type="radio" name="genreInput" id="2" value="Science Fiction"/>

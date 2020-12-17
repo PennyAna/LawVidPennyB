@@ -4,4 +4,8 @@ function changeProfileView() {
     if (profile.className == 'hidden') {
         profile.className = 'visible';
     }
-}          
+} 
+// document.getElementById('').addEventListener('click', afunction);
+// function afunction() {
+
+// }
