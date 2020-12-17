@@ -3,6 +3,7 @@
 <form id="addLinkForm" method="GET" action="/add">
     <button type="submit" id="addBtn">Add Media</button>
 </form><br><br>
+
     <form id="searchTypeForm" action="searchType">
         <input type="radio" id="film" name="typeInput"/>
         <label for="film">Film</label>
@@ -13,8 +14,6 @@
         <button type="submit" id="typeBtn" >Search By Type</button>
     </form><br><br>
 
-
-    
     <form id="searchAllForm" action="/searchAll" method="GET">
         <button type="submit" id="browseBtn" >Browse All</button>
     </form><br><br>
@@ -42,3 +41,4 @@
         <label for="10">Game</label><br><br>
         <button type="submit" id="genreBtn">Search By Genre</button>
     </form>
+    <script src="../../public/db/search.js"></script>
