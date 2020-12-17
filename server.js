@@ -3,7 +3,6 @@ const express = require('express');
 const passport = require('passport');
 const Strategy = require('passport-local').Strategy;
 const path = require('path');
-const db = require('./public/db');
 //app.post('/endpoint', function (req, res) {
 //var form = new multiparty.Form();
 //form.parse(req, function(err, fields, files) {
