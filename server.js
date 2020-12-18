@@ -73,10 +73,10 @@ app.use(passport.session());
 app.get('/', function(req, res) {
   res.render('pages/index.ejs', {user: req.user});
 });
-app.get('/login',
-  function(req, res){
-    res.render('partials/login.ejs');
-  });
+// app.get('/login',
+//   function(req, res){
+//     res.render('pages/browse.ejs');
+//   });
 app.post('/login', 
   passport.authenticate('local', { failureRedirect: 'pages/index.ejs' }),
   function(req, res) {
