@@ -188,21 +188,6 @@ function(req, res) {
 
 const {Pool} = require('pg');
 const pool = new Pool();
-//emit error if idle clients -> backend error/network partition
-pool.on('error', (err, client) => {
-  console.error('Unexpected error on idle client', err);
-  process.exit(-1);
-})
-//callback -checkout client
-//   {
-// connectionString: process.env.DATABASE_URL, 
-// ssl: {
-//   rejectUnauthorized: false
-// }, 
-// max: 20, 
-// idleTimeoutMillis: 30000, connectionTimeoutMillis: 2000,
-// });
-// const client = pool.connect();
 app.listen(app.get('port'), function() {
 console.log('Now listening for connections on port: ', app.get('port'));
 });
