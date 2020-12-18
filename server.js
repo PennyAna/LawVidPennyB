@@ -99,7 +99,7 @@ app.get('/browse', function(req, res) {
 // function(req, res){
 //   res.render('partials/profile.ejs', { user: req.user });
 // });
-app.post('/addMedia', ensureLoggedIn(),   
+app.post('/addMedia',   
   async function(req, res) {
     try {
       const query = `INSERT INTO media_table (title_name, genre_type, media_type) VALUES ('Frozen', 'Animation', 'film')`;
@@ -129,7 +129,7 @@ app.post('/addMedia', ensureLoggedIn(),
       }
       });
 const browseResults = {};
-app.get('/searchAll', ensureLoggedIn(),
+app.get('/searchAll',
     async function(req, res) {
       try {
         const query = 'SELECT * FROM media_table ORDER BY title_name ASC';
@@ -160,7 +160,7 @@ app.get('/searchAll', ensureLoggedIn(),
     }
 });
 const genreResults = {};
-app.get('/searchGenre', ensureLoggedIn(),
+app.get('/searchGenre', 
   async function(req, res) {
   try {
     const genre = req.body.genre;
@@ -192,7 +192,7 @@ app.get('/searchGenre', ensureLoggedIn(),
     res.send("Error " + err);
   }
 });
-app.get('/searchGenreSuccess', ensureLoggedIn(),
+app.get('/searchGenreSuccess', 
   function(req, res) {
     res.render("pages/genre.ejs", genreResults);
   });
