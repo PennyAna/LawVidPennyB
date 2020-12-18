@@ -91,7 +91,7 @@ app.get('/add',
 function(req, res) {
   res.render('pages/add.ejs');
 });
-app.get('/browse', ensureLoggedIn(), function(req, res) {
+app.get('/browse', function(req, res) {
   res.render('pages/browse.ejs', {user: req.user});
 });
 // app.get('/profile', 
