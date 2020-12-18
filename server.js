@@ -77,7 +77,7 @@ app.get('/', function(req, res) {
 //   function(req, res){
 //     res.render('partials/login.ejs');
 //   });
-app.post('/login', 
+app.post('/browse', 
   passport.authenticate('local', { failureRedirect: '/' }),
   function(req, res) {
     res.render('pages/browse.ejs');
