@@ -101,7 +101,7 @@ function(req, res){
 app.post('/addMedia',  
   async function(req, res) {
     try {
-      const query = "INSERT INTO media_table (title_name, type_tv, type_film, type_other) VALUES ( 'Africa Screams', 'false', 'true', 'false')";
+      const query = "INSERT INTO media_table (title_name, genre_type, media_type) VALUES ('Frozen', 'Animation', 'film')";
       const client = await pool.connect();
       await client.query('BEGIN');
       await JSON.stringify(client.query(query, 
