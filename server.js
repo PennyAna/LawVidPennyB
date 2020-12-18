@@ -60,7 +60,7 @@ app.use(passport.session());
 app.get('/', function(req, res) {
   res.render('pages/index.ejs');
 });
-app.get('/browse', require('connect-ensure-login').ensureLoggedIn(),
+app.get('/browse', 
    function(req, res){
      res.render('pages/browse.ejs');
    });
@@ -74,11 +74,11 @@ app.get('/logout',
     req.logout();
     res.redirect('/');
   });
-app.get('/add', require('connect-ensure-login').ensureLoggedIn(),
+app.get('/add', 
 function(req, res) {
   res.render('pages/add.ejs');
 });
-app.get('/addMedia', require('connect-ensure-login').ensureLoggedIn(),
+app.get('/addMedia', 
     async function(req, res) {
         try {
             const client = await pool.connect();
@@ -92,7 +92,7 @@ app.get('/addMedia', require('connect-ensure-login').ensureLoggedIn(),
             res.send("Error (addError) " + err);
         }
     })
-app.get('/searchAll', require('connect-ensure-login').ensureLoggedIn(), 
+app.get('/searchAll', 
 async function(req, res) {
     try {   
         const client = await pool.connect();
@@ -107,7 +107,7 @@ async function(req, res) {
         res.send("Error (allError) " + err);
     }
 })
-app.get('/searchType', require('connect-ensure-login').ensureLoggedIn(),
+app.get('/searchType',
 async function(req, res) {
     try {   
         const client = await pool.connect();
@@ -122,7 +122,7 @@ async function(req, res) {
         res.send("Error (typeError) " + err);
     }
 })
-app.get('/searchGenre', require('connect-ensure-login').ensureLoggedIn(), 
+app.get('/searchGenre', 
 async function(req, res) {
     try {   
         const client = await pool.connect();
