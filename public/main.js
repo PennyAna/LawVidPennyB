@@ -9,7 +9,7 @@ function searchType(){
     const typeChoice = document.getElementById('typeInput');
     for (i = 0; i < typeChoice.length; i++){
         if (typeChoice[i].checked) {
-            typeRadioVal = typeChoice[i].value;
+            typeRadioVal = toString(typeChoice[i].name);
             console.log("Bubbles Bubbles Bubbles" + typeRadioVal);
     }}
     switch(typeRadioVal) {
@@ -46,7 +46,7 @@ function searchGenre() {
     const genreChoice = document.getElementById('genreInput');
     for (i = 0; i < genreChoice.length; i++){
         if (genreChoice[i].checked) {
-            genreRadioVal = genreChoice[i].value;
+            genreRadioVal = toString(genreChoice[i].name);
             console.log("Bubbles Bubbles Bubbles" + genreRadioVal);
     }}
     switch(genreRadioVal) {
