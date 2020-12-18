@@ -78,6 +78,20 @@ app.get('/add',
 function(req, res) {
   res.render('pages/add.ejs');
 });
+app.get('/addMedia', 
+    async function(req, res) {
+        try {
+            const client = await pool.connect();
+            const result = await client.query(`SELECT * FROM media_table WHERE title_name = 'Iron Man'`);
+            const results = { 'result': (result) ? result.rows: null};
+            if (results) {
+                res.render('pages/search.ejs', results);
+            }
+        } catch (err) {
+            console.error(err);
+            res.send("Error (addError) " + err);
+        }
+    })
 app.get('/searchAll', async function(req, res) {
     try {   
         const client = await pool.connect();
@@ -89,7 +103,7 @@ app.get('/searchAll', async function(req, res) {
         client.release();
     } catch (err) {
         console.error(err);
-        res.send("Error " + err);
+        res.send("Error (allError) " + err);
     }
 })
 app.get('/searchType', async function(req, res) {
@@ -103,7 +117,7 @@ app.get('/searchType', async function(req, res) {
         client.release();
     } catch (err) {
         console.error(err);
-        res.send("Error " + err);
+        res.send("Error (typeError) " + err);
     }
 })
 app.get('/searchGenre', async function(req, res) {
@@ -117,7 +131,7 @@ app.get('/searchGenre', async function(req, res) {
         client.release();
     } catch (err) {
         console.error(err);
-        res.send("Error " + err);
+        res.send("Error (genreError) " + err);
     }
 })
 const {Pool} = require('pg');
