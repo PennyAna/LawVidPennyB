@@ -198,9 +198,6 @@ pool.on('error', (err, client) => {
   console.error('Unexpected error on idle client', err);
   process.exit(-1);
 })
-console.log('calling end');
-pool.end();
-console.log('pool has drained');
 //callback -checkout client
 
 
