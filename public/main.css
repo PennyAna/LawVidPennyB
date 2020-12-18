@@ -34,6 +34,7 @@ row {
 	max-height: 100%;
 	background-color: var(--color-dark-two);
 	color: var(--color-accent);
+	padding: 50px;
 }
 .col-sm-9 {
 	max-width: 75%;
@@ -42,6 +43,7 @@ row {
 	max-height: 100%;
 	background-color: var(--color-light-two);
 	color: var(--color-accent);
+	padding: 20px;
 }
 .sidenav {
 
