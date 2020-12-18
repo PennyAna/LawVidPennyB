@@ -1,26 +1,37 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <% include ../partials/header.ejs %>
 </head>
-<body> 
+<body>
+    <div class="container">
+       <div id="formDiv">
+           <% include ../partials/searchForms.ejs %>
+        </div>
+        <div id="searchDiv">
+            <h2>Added Results</h2>
+            <table>
+                <tr>
+                    <th>Media ID</th>
+                    <th>Media Name</th>
+                    <th>Media Type</th>
+                    <th>Media Genre</th>
+                </tr>
+                <% result.forEach(function(s) { %>
+                <tr>
+                    <td><%= s.title_id %></td>
+                    <td><%= s.title_name %></td>
+                    <td><%= s.media_type %></td>
+                    <td>  <%= s.genre_type %></td><% }); %>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
     <!--initial build: grab title/type-->
     <!--this form needs to connect to the IMDB API-->
-    <form id="addInfoForm" class="forms" action="/addMedia" method="POST">
-        <label for="media_title">Media Title: </label>
-        <input type="text" id="media_title"/>
-        <br><br>
-<!--         <label for="media_type">Media Type: </label>
-        <label for="tv_type">TV</label><br>
-        <input type="radio" id="tv_type" name="media_type" value="TV"/>
-        <label for="film_type">Film</label><br>
-        <input type="radio" id="film_type" name="media_type" value="Film"/>
-        <label for="other_type">Other</label><br>
-        <input type="radio" id="other_type" name="media_type" value="Other"/>
-        <br><br> -->
-        <button id="addInfoMedia" type="submit">Search for Title Match</button>
-    </form>
+    
     <!--there needs to be a div here to display IMDB options (limit to top 10) with buttons for choice-->
     <!--this form needs to submit all data to database, also needs to be a snippet? to be included and auto-populated when choice clicked-->
   <!--   <form id="addMediaForm" class="forms" method="POST" action="/postMedia">    
@@ -38,5 +49,3 @@
         
         <button id="addMediaBtn" type="submit">Add Media to Database</button>
     </form> -->
-</body>
-</html>

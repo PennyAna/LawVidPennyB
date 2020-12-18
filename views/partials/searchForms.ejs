@@ -1,8 +1,20 @@
 <!DOCTYPE html>
 <br><br>
-<form id="addLinkForm" method="GET" action="/add">
-    <button type="submit" id="addBtn">Add Media</button>
-</form><br><br>
+<form id="addInfoForm" class="forms" action="/addMedia" method="POST">
+    <label for="media_title">Media Title: </label>
+    <input type="text" id="media_title"/>
+    <br><br>
+<!--         <label for="media_type">Media Type: </label>
+    <label for="tv_type">TV</label><br>
+    <input type="radio" id="tv_type" name="media_type" value="TV"/>
+    <label for="film_type">Film</label><br>
+    <input type="radio" id="film_type" name="media_type" value="Film"/>
+    <label for="other_type">Other</label><br>
+    <input type="radio" id="other_type" name="media_type" value="Other"/>
+    <br><br> -->
+    <button id="addInfoMedia" type="submit">Search for Title Match</button>
+</form>
+
 <form id="searchAllForm" action="/searchAll" method="GET">
     <button type="submit" id="browseBtn" >Browse All</button>
 </form><br><br>
