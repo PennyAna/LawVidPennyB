@@ -92,9 +92,9 @@ function searchGenre() {
         });
 }
 
-document.getElementById('addInfoMedia').addEventListener('click', addProcess);
-//for add page addInfoForm w/click addInfoMedia (temp btn)
-//vars media_title
-function addProcess() {
+// document.getElementById('addInfoMedia').addEventListener('click', addProcess);
+// //for add page addInfoForm w/click addInfoMedia (temp btn)
+// //vars media_title
+// function addProcess() {
 
-}
+// }
