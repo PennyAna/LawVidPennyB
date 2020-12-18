@@ -57,10 +57,10 @@ app.use(require('express-session')({ secret: 'keyboard cat', resave: false, save
 app.use(passport.initialize());
 app.use(passport.session());
 // Define routes
-app.get('/', function(req, res) {
+app.get('/', require('connect-ensure-login').ensureLoggedIn(),function(req, res) {
   res.render('pages/index.ejs');
 });
-app.get('/browse',
+app.get('/browse', require('connect-ensure-login').ensureLoggedIn(),
    function(req, res){
      res.render('pages/browse.ejs');
    });
@@ -74,11 +74,11 @@ app.get('/logout',
     req.logout();
     res.redirect('/');
   });
-app.get('/add', 
+app.get('/add', require('connect-ensure-login').ensureLoggedIn(),
 function(req, res) {
   res.render('pages/add.ejs');
 });
-app.get('/addMedia', 
+app.get('/addMedia', require('connect-ensure-login').ensureLoggedIn(),
     async function(req, res) {
         try {
             const client = await pool.connect();
@@ -92,7 +92,8 @@ app.get('/addMedia',
             res.send("Error (addError) " + err);
         }
     })
-app.get('/searchAll', async function(req, res) {
+app.get('/searchAll', require('connect-ensure-login').ensureLoggedIn(), 
+async function(req, res) {
     try {   
         const client = await pool.connect();
         const result = await client.query('SELECT * FROM media_table');
@@ -106,7 +107,8 @@ app.get('/searchAll', async function(req, res) {
         res.send("Error (allError) " + err);
     }
 })
-app.get('/searchType', async function(req, res) {
+app.get('/searchType', require('connect-ensure-login').ensureLoggedIn(),
+async function(req, res) {
     try {   
         const client = await pool.connect();
         const result = await client.query(`SELECT * FROM media_table WHERE media_type = 'film'`);
@@ -120,7 +122,8 @@ app.get('/searchType', async function(req, res) {
         res.send("Error (typeError) " + err);
     }
 })
-app.get('/searchGenre', async function(req, res) {
+app.get('/searchGenre', require('connect-ensure-login').ensureLoggedIn(), 
+async function(req, res) {
     try {   
         const client = await pool.connect();
         const result = await client.query(`SELECT * FROM media_table WHERE genre_type = 'Action'`);
