@@ -42,6 +42,9 @@ body {
 .container {
 
 }
+form {
+	max-width: 100%;
+}
 /*index page*/
 #loginBtn {
 
@@ -177,7 +180,4 @@ radio {
 [class*="col-"] {
 	float: middle;
 	padding: 15px;
-}
-form {
-	overflow:auto;
 }
