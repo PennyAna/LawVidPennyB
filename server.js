@@ -217,7 +217,6 @@ console.log('Now listening for connections on port: ', app.get('port'));
 function runQuery (queryString, cb) {
   const results = {};
   const client = pool.connect();
-    if (err) {throw(err)};
     client.query(queryString, (err, res) => {
     if (err) { 
       console.log(err.stack);
