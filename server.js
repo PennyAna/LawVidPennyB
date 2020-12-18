@@ -108,7 +108,7 @@ app.post('/addMedia',
           });
     } catch (err) {
           console.error("insertError" + err);
-          res.send("Error " + err);
+          res.send("Error (insertError)" + err);
       }
       });
 const browseResults = {};
@@ -129,7 +129,7 @@ app.get('/searchAll',
               });
       }catch (err) {
         console.error("allError" + err);
-        res.send("Error " + err);
+        res.send("Error (allError)" + err);
     }
 });
 const genreResults = {};
@@ -145,7 +145,7 @@ app.get('/searchGenre',
     });     
   } catch (err) {
     console.error("genreError" + err);
-    res.send("Error " + err);
+    res.send("Error (genreError)" + err);
   }
 });
 app.get('/searchGenreSuccess', 
@@ -166,7 +166,7 @@ app.post('/searchType',
    });
   } catch (err) { 
     console.error("typeError " + err);
-    res.send("Error " + err);
+    res.send("Error (typeError)" + err);
   }
 }); 
 
@@ -208,5 +208,5 @@ function runQuery (queryString, cb) {
       results =  {
         'result': (result) ? result.rows: null
       }}};
-  return cb(results);
+  return cb(err, results);
 };
