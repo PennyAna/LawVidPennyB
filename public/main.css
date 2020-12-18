@@ -27,7 +27,7 @@ row {
 }
 .col-sm-3 {
 	max-width: 25%;
-	float: left;
+	float: right;
 	position: relative;
 	max-height: 100%;
 }
