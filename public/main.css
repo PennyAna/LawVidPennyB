@@ -163,6 +163,12 @@ radio {
 	color: var(--color-accent);
 	text-align: center;
 }
+#footerP {
+	text-align: center;
+}
+#footerDiv {
+	align-content: center;
+}
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
 	[class*="col-"] {width: 50%;}
