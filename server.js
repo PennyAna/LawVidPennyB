@@ -216,11 +216,11 @@ console.log('Now listening for connections on port: ', app.get('port'));
 function runQuery (queryString, cb) {
   const results = {};
   const client = pool.connect();
-  client.query(queryString, (err, res) => {
+  client.query(queryString), (err, res) => {
     if (err) { 
       console.log(err.stack);
     }else {
       results = res.rows[0];
-  }})
+  }};
   client.release();
 };
