@@ -144,7 +144,7 @@ app.get('/searchAll',
 app.get('/searchGenre', 
   async function(req, res) {
   try {
-    const genre = req.body.type;
+    const genre = req.body.genre;
     const client = await pool.connect();
     const result = await client.query(genre);
     const results = {
@@ -165,7 +165,7 @@ app.post('/searchType',
     const result = await client.query(type);
     const results = {
       'result': (result) ? result.rows: null
-      }
+    };
     res.render('pages/type.ejs', results);
     client.release();
   } catch (err) { 

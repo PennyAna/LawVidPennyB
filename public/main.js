@@ -81,15 +81,15 @@ function searchGenre() {
             genreReq = `SELECT * FROM media_table ORDER BY genre_type`; 
             break;
         };
-        $.ajax({
-            type:"POST",
-            data: {type: genreReq},
-            url: "/searchGenre",
-            dataType: "text",  
+    $.ajax({
+        type:"POST",
+        data: {genre: genreReq},
+        url: "/searchGenre",
+        dataType: "text",  
             error: function() {
-                alert("Please Try Again");
-            },
-        });
+            alert("Please Try Again");
+        },
+    });
 }
 
 // document.getElementById('addInfoMedia').addEventListener('click', addProcess);
