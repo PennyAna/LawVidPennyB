@@ -214,15 +214,14 @@ app.listen(app.get('port'), function() {
 console.log('Now listening for connections on port: ', app.get('port'));
 });
 
-function runQuery (queryString, callback) {
+function runQuery (queryString, cb) {
   const results = {};
-  pool.connect((err, client, done) => {
+  pool.connect((err, client) => {
     if (err) {throw(err)};
-    client.query(queryString, [1], (err, res) => { done();
+    client.query(queryString, (err, res) => {
     if (err) { 
       console.log(err.stack);
     }else {
       results = res.rows[0];
     }})});
-  return results;
 }
