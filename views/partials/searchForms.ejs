@@ -1,44 +1,90 @@
 <!DOCTYPE html>
-<br><br>
+<div class="jumbotron">
+    <ul class="nav nav-pills nav-stacked">
+        <li class="active">
+            <a href="pages/index.ejs">Login</a>
+        </li>
+        <li>
+            <a href="pages/browse.ejs">Browse</a>
+        </li>
+    </ul>
 <form id="searchAllForm" action="/searchAll" method="GET" class="forms">
-    <button type="submit" id="browseBtn" >Browse All</button>
+     <ul class="nav nav-pills nav-stacked">
+        <li class="active"> 
+            <button type="submit" id="browseBtn" >Browse All</button>
+        </li>
+    </ul>
 </form><br><br>
 <form id="addInfoForm" class="forms" action="/addMedia" method="GET">
-    <label for="media_title">Media Title: </label><br>
-    <input type="text" id="media_title"/>
-    <br><br>
-    <button id="addInfoMedia" type="submit">Search for Title Match</button>
+ <ul class="nav nav-pills nav-stacked">
+    <li class="active"> 
+        <label for="media_title">Media Title: </label><br>
+        <input type="text" id="media_title"/>
+        <br><br>
+        <button id="addInfoMedia" type="submit">Search for Title Match</button>
+    </li>
+</ul>       
 </form><br><br>
 <form id="searchTypeForm" class="forms" action="/searchType" method="GET">
-    <input type="radio" id="film" name="typeInput"/>
-    <label for="film">Film</label><br>
-    <input type="radio" id="tv" name="typeInput"/>
-    <label for="tv">TV</label><br>
-    <input type="radio" id="game" name="typeInput"/>
-    <label for="game">Game</label><br>
-    <button type="submit" id="typeBtn" >Search By Type</button>
+     <ul class="nav nav-pills nav-stacked">
+        <li class="active">
+            <input type="radio" id="film" name="typeInput"/>
+            <label for="film">Film</label><br>
+        </li>
+        <li>
+            <input type="radio" id="tv" name="typeInput"/>
+            <label for="tv">TV</label><br>
+        </li>
+        <li>
+            <input type="radio" id="game" name="typeInput"/>
+            <label for="game">Game</label><br>
+            <button type="submit" id="typeBtn" >Search By Type</button>
+        </li>
+    </ul>
 </form><br><br>
 <form id="searchGenreForm" action="/searchGenre" class="forms" method="GET">
-    <input type="radio" name="genreInput" id="1" value="Action"/>
-    <label for="1">Action</label><br>
-    <input type="radio" name="genreInput" id="2" value="Science Fiction"/>
-    <label for="2">Science Fiction</label><br>
-    <input type="radio" name="genreInput" id="3" value="Fantasy"/>
-    <label for="3">Fantasy</label><br>
-    <input type="radio" name="genreInput" id="4" value="Comedy"/>
-    <label for="4">Comedy</label><br>
-    <input type="radio" name="genreInput" id="5" value="Romance"/>
-    <label for="5">Romance</label><br>
-    <input type="radio" name="genreInput" id="6" value="Western"/>
-    <label for="6">Western</label><br>
-    <input type="radio" name="genreInput" id="7" value="Anime"/>
-    <label for="7">Anime</label><br>
-    <input type="radio" name="genreInput" id="8" value="Animation"/>
-    <label for="8">Animation</label><br>
-    <input type="radio" name="genreInput" id="9" value="Drama"/>
-    <label for="9">Drama</label><br>
-    <input type="radio" name="genreInput" id="10" value="Game"/>
-    <label for="10">Game</label><br><br>
-    <button type="submit" id="genreBtn">Search By Genre</button>
+     <ul class="nav nav-pills nav-stacked">
+        <li class="active">
+            <input type="radio" name="genreInput" id="1" value="Action"/>
+            <label for="1">Action</label><br>
+        </li>
+        <li>
+            <input type="radio" name="genreInput" id="2" value="Science Fiction"/>
+            <label for="2">Science Fiction</label><br>
+        </li>
+        <li> 
+            <input type="radio" name="genreInput" id="3" value="Fantasy"/>
+            <label for="3">Fantasy</label><br>
+        </li>
+        <li>
+            <input type="radio" name="genreInput" id="4" value="Comedy"/>
+            <label for="4">Comedy</label><br>
+        </li>
+        <li>
+            <input type="radio" name="genreInput" id="5" value="Romance"/>
+            <label for="5">Romance</label><br>
+        </li>
+        <li>
+            <input type="radio" name="genreInput" id="6" value="Western"/>
+            <label for="6">Western</label><br>
+        </li>
+        <li>
+            <input type="radio" name="genreInput" id="7" value="Anime"/>
+            <label for="7">Anime</label><br>
+        </li>
+        <li>
+            <input type="radio" name="genreInput" id="8" value="Animation"/>
+            <label for="8">Animation</label><br>
+        </li>
+        <li>
+            <input type="radio" name="genreInput" id="9" value="Drama"/>
+            <label for="9">Drama</label><br>
+        </li>
+        <li>
+            <input type="radio" name="genreInput" id="10" value="Game"/>
+            <label for="10">Game</label><br><br>
+            <button type="submit" id="genreBtn">Search By Genre</button>
+        </li>
+    </ul>
 </form>
  
