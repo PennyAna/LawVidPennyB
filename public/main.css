@@ -22,10 +22,14 @@ body {
   margin-right:25%;
 }
 .col-sm-3 {
-
+	max-width: 25%;
+	float: left;
+	position: relative;
 }
 .col-sm-9 {
-  
+	max-width: 75%;
+	float: left;
+	position: relative;
 }
 .sidenav {
 
