@@ -2,10 +2,11 @@
 
     <h1>Welcome! </h1>
     <h2>Log In</h2>
-    <form action="/browse" method="POST">
+    <form id="login" class="forms"
+    action="/browse" method="POST">
             <label>Name: </label>
-            <input type="text" name="name" autofocus/><br/>
+            <input type="text" id="name" name="name" autofocus/><br/>
         <label>Password: </label>
-        <input type="password" name="password"/><br>
-        <input type="submit" value="Submit"/>
+        <input id="password" type="password" name="password"/><br>
+        <input id="loginBtn" type="submit" value="Submit"/>
     </form>
