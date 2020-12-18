@@ -57,7 +57,7 @@ app.use(require('express-session')({ secret: 'keyboard cat', resave: false, save
 app.use(passport.initialize());
 app.use(passport.session());
 // Define routes
-app.get('/', require('connect-ensure-login').ensureLoggedIn(),function(req, res) {
+app.get('/', function(req, res) {
   res.render('pages/index.ejs');
 });
 app.get('/browse', require('connect-ensure-login').ensureLoggedIn(),
