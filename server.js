@@ -133,14 +133,14 @@ app.get('/searchAll',
     async function(req, res) {
       try {
         const query = 'SELECT * FROM media_table ORDER BY title_name ASC';
-        JSON.stringify(client.query(query, 
+        runQuery(JSON.stringify(query), 
           function(err, result) {
             if (result.rows[0]) {
               console.log("Warning, this is already in the database");
               res.redirect('/add');
             }
             else {
-              client.query(query, function (err, result) {
+              runQuery(query, function (err, result) {
                 if (err) {console.log(err);}
                 else{
                   client.query('COMMIT');
@@ -152,8 +152,7 @@ app.get('/searchAll',
                   res.redirect('/add');
                   return;
                 }
-              })}}));
-        client.release();
+              })}});
       }catch (err) {
         console.error(err);
         res.send("Error " + err);
