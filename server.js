@@ -91,9 +91,9 @@ app.get('/add',
 function(req, res) {
   res.render('pages/add.ejs');
 });
-app.get('/browse', function(req, res) {
-  res.render('pages/browse.ejs');
-});
+// app.get('/browse', function(req, res) {
+//   res.render('pages/browse.ejs');
+// });
 // app.get('/profile', 
 // require('connect-ensure-login').ensureLoggedIn(),
 // function(req, res){
@@ -103,25 +103,13 @@ app.post('/addMedia',
   async function(req, res) {
     try {
       const query = `INSERT INTO media_table (title_name, genre_type, media_type) VALUES ('Frozen', 'Animation', 'film')`;
-      await client.query('BEGIN');
-      JSON.stringify(client.query(query, 
+      runQuery(JSON.stringify(query), 
         function(err, result) {
-          if (result.rows[0]) {
-            console.log("Warning, this is already in the database");
-            res.redirect('/browse');
-          }
+          if (err) {throw (err)}
           else {
-            client.query(query, function (err, result) {
-              if (err) {console.log(err);}
-              else{
-                client.query('COMMIT');
-                console.log(result);
-                console.log("Success!");
-                res.redirect('/add');
-                return;
-              }
-            })}
-          }));
+            console.log("Bubbles Bubbles Bubbles" + JSON.parse(result));
+          }
+          });
     } catch (err) {
           console.error(err);
           res.send("Error " + err);
@@ -134,24 +122,15 @@ app.get('/searchAll',
         const query = 'SELECT * FROM media_table ORDER BY title_name ASC';
         runQuery(JSON.stringify(query), 
           function(err, result) {
-            if (result.rows[0]) {
-              console.log("Warning, this is already in the database");
-              res.redirect('/add');
-            }
-            else {
-              runQuery(query, function (err, result) {
-                if (err) {console.log(err);}
-                else{
-                  client.query('COMMIT');
-                  console.log(result);
-                   browseResults = { 
-                    'result': (result) ? result.rows: null
-                  };
-                  console.log("Success!");
+                if (err) {
+                  console.log(err);
+                res.redirect('/browse');
+                } else{
+                   browseResults = JSON.parse(result);
                   res.redirect('/add');
                   return;
                 }
-              })}});
+              });
       }catch (err) {
         console.error(err);
         res.send("Error " + err);
@@ -162,7 +141,12 @@ app.get('/searchGenre',
   async function(req, res) {
   try {
     const genre = req.body.genre;
-    genreResults = runQuery(JSON.stringify(genre));     
+    runQuery(JSON.stringify(genre), function(err, result) {
+      if (err) { throw(err);}
+      else {
+        genreResults = JSON.parse(result);
+      }
+    });     
   } catch (err) {
     console.error(err);
     res.send("Error " + err);
@@ -171,24 +155,29 @@ app.get('/searchGenre',
 app.get('/searchGenreSuccess', 
   function(req, res) {
     res.render("pages/genre.ejs", genreResults);
-  });
+});
 
-  const typeResults = {};
+const typeResults = {};
 app.post('/searchType', 
   async function(req, res) {
   try {    
    const type = req.body.type;
-   typeResults = runQuery(JSON.stringify(type));
+   runQuery(JSON.stringify(type), function (err, result) {
+     if(err) {throw(err);}
+     else{
+       typeResults = JSON.parse(result);
+     }
+   });
   } catch (err) { 
-    console.error(error);
+    console.error(err);
     res.send("Error " + err);
   }
 }); 
 
 app.get('/searchTypeSuccess', 
-  function(req, res) {
+function(req, res) {
     res.render("pages/type.ejs", typeResults);
-  });
+});
 
 const {Pool} = require('pg');
 const pool = new Pool();
@@ -216,11 +205,12 @@ console.log('Now listening for connections on port: ', app.get('port'));
 function runQuery (queryString, cb) {
   const results = {};
   const client = pool.connect();
-  client.query(queryString, err);
+  const result = client.query(queryString, err);
   if (err) { 
     console.log(err.stack);
-    }else {
-      results = res.rows[0];
-  };
+    } else {
+      results =  {
+        'result': (result) ? result.rows: null
+    };}
   client.release();
 }
