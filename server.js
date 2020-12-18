@@ -199,7 +199,7 @@ pool.on('error', (err, client) => {
   process.exit(-1);
 })
 console.log('calling end');
-await pool.end();
+pool.end();
 console.log('pool has drained');
 //callback -checkout client
 
