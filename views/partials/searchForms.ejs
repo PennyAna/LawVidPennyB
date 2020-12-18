@@ -4,14 +4,6 @@
     <label for="media_title">Media Title: </label>
     <input type="text" id="media_title"/>
     <br><br>
-<!--         <label for="media_type">Media Type: </label>
-    <label for="tv_type">TV</label><br>
-    <input type="radio" id="tv_type" name="media_type" value="TV"/>
-    <label for="film_type">Film</label><br>
-    <input type="radio" id="film_type" name="media_type" value="Film"/>
-    <label for="other_type">Other</label><br>
-    <input type="radio" id="other_type" name="media_type" value="Other"/>
-    <br><br> -->
     <button id="addInfoMedia" type="submit">Search for Title Match</button>
 </form>
 
@@ -19,7 +11,7 @@
     <button type="submit" id="browseBtn" >Browse All</button>
 </form><br><br>
     
-<form id="searchTypeForm">
+<form id="searchTypeForm" action="/searchType" method="GET">
         <input type="radio" id="film" name="typeInput"/>
         <label for="film">Film</label>
         <input type="radio" id="tv" name="typeInput"/>
@@ -29,7 +21,7 @@
         <button type="submit" id="typeBtn" >Search By Type</button>
     </form><br><br>
 
-    <form id="searchGenreForm">
+    <form id="searchGenreForm" action="/searchGenre" method="GET">
         <input type="radio" name="genreInput" id="1" value="Action"/>
         <label for="1">Action</label><br>
         <input type="radio" name="genreInput" id="2" value="Science Fiction"/>

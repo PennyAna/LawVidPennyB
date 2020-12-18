@@ -4,24 +4,12 @@ const passport = require('passport');
 const Strategy = require('passport-local').Strategy;
 const path = require('path');
 const db = require('./db');
-//app.post('/endpoint', function (req, res) {
-//var form = new multiparty.Form();
-//form.parse(req, function(err, fields, files) {
-  //fields, fields fields
-//});
-//})
-// Create a new Express application.
+
 const app = express();
 //bodyparser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
-// Configure the local strategy for use by Passport.
-//
-// The local strategy require a `verify` function which receives the credentials
-// (`username` and `password`) submitted by the user.  The function must verify
-// that the password is correct and then invoke `cb` with a user object, which
-// will be set at `req.user` in route handlers after authentication.
 passport.use('local',
   new Strategy( {
     usernameField: 'name', 
@@ -90,127 +78,49 @@ app.get('/add',
 function(req, res) {
   res.render('pages/add.ejs');
 });
-// app.get('/profile', 
-// require('connect-ensure-login').ensureLoggedIn(),
-// function(req, res){
-//   res.render('partials/profile.ejs', { user: req.user });
-// });
-app.post('/addMedia',   
-  async function(req, res) {
-    const result = {};
-    // try {
-    //   const query = `INSERT INTO media_table (title_name, genre_type, media_type) VALUES ('Frozen', 'Animation', 'film')`;
-    //   runQuery(JSON.stringify(query), 
-    //     function(err, result) {
-    //       if (err) {throw (err)}
-    //       else {
-    //         console.log("Bubbles Bubbles Bubbles" + JSON.parse(result));
-    //       }
-    //       });
-    // } catch (err) {
-    //       console.error("insertError" + err);
-    //       res.send("Error (insertError)" + err);
-    //   }
-      });
-const browseResults = {};
-app.get('/searchAll',
-    async function(req, res) {
-      try {
+app.get('/searchAll', async function(req, res) {
+    try {   
         const client = await pool.connect();
-        const result = await client.query('SELECT * FROM media_table');
-        const results = {
-          'result': (result) ? result.rows: null
-        };
-        res.render('pages/search.ejs');
+        const result = await client.query('SELECT * FROM test_table');
+        const results = { 'results': (result) ? result.rows: null};
+        res.render('pages/search.ejs', results);
         client.release();
-      } catch (err) {
+    } catch (err) {
         console.error(err);
         res.send("Error " + err);
-      }});
-           //   const query = 'SELECT * FROM media_table ORDER BY title_name ASC';
-      //   runQuery(JSON.stringify(query), 
-      //     function(err, result) {
-      //           if (err) {
-      //             throw(err);
-      //             res.redirect('/browse');
-      //           } else{
-      //              browseResults = JSON.parse(result);
-      //             res.redirect('/add');
-      //             return;
-      //           }
-      //         });
-      // }catch (err) {
-      //   console.error("allError" + err);
-      //   res.send("Error (allError)" + err);
-//     }
-// });
-const genreResults = {};
-app.get('/searchGenre', 
-  async function(req, res) {
-    const result = {};
-  // try {
-  //   const genre = req.body.genre;
-  //   runQuery(JSON.stringify(genre), function(err, result) {
-  //     if (err) { throw(err);}
-  //     else {
-  //       genreResults = JSON.parse(result);
-  //     }
-  //   });     
-  // } catch (err) {
-  //   console.error("genreError" + err);
-  //   res.send("Error (genreError)" + err);
-  // }
-});
-app.get('/searchGenreSuccess', 
-  function(req, res) {
-    res.render("pages/genre.ejs", genreResults);
-});
-
-const typeResults = {};
-app.post('/searchType', 
-  async function(req, res) {
-  // try {    
-    const result = {};
-//    const type = req.body.type;
-//    runQuery(JSON.stringify(type), function (err, result) {
-//      if(err) {throw(err);}
-//      else{
-//        typeResults = JSON.parse(result);
-//      }
-//    });
-//   } catch (err) { 
-//     console.error("typeError " + err);
-//     res.send("Error (typeError)" + err);
-  // }
-}); 
-
-app.get('/searchTypeSuccess', 
-function(req, res) {
-    res.render("pages/type.ejs", typeResults);
-});
-
+    }
+})
+app.get('/searchType', async function(req, res) {
+    try {   
+        const client = await pool.connect();
+        const result = await client.query(`SELECT * FROM test_table WHERE media_type = 'film'`);
+        const results = { 'results': (result) ? result.rows: null};
+        res.render('pages/type.ejs', results);
+        client.release();
+    } catch (err) {
+        console.error(err);
+        res.send("Error " + err);
+    }
+})
+app.get('/searchGenre', async function(req, res) {
+    try {   
+        const client = await pool.connect();
+        const result = await client.query(`SELECT * FROM test_table WHERE genre_type = 'Action'`);
+        const results = { 'results': (result) ? result.rows: null};
+        res.render('pages/genre.ejs', results);
+        client.release();
+    } catch (err) {
+        console.error(err);
+        res.send("Error " + err);
+    }
+})
 const {Pool} = require('pg');
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL, 
-  ssl:{
-    rejectUnauthorized: false
-  }
-});
+    connectionString: process.env.DATABASE_URL, 
+    ssl: {
+        rejectUnauthorized: false
+    }
+}); 
 app.listen(app.get('port'), function() {
-console.log('Now listening for connections on port: ', app.get('port'));
+  console.log('Now listening for connections on port: ', app.get('port'));
 });
-
-// function runQuery (queryString, cb) {
-//   const results = {};
-//   const client = pool.connect();
-//   const result = function (req, err) {
-//     client.query(queryString);
-//     client.release();
-//     if (err) { 
-//       console.log("queryError " + err.stack);
-//     } else {
-//       results =  {
-//         'result': (result) ? result.rows: null
-//       }}};
-//   return cb(err, results);
-// };
