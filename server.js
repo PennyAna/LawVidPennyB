@@ -79,7 +79,7 @@ app.get('/login',
 app.post('/login', 
   passport.authenticate('local', { failureRedirect: 'pages/index.ejs' }),
   function(req, res) {
-    res.redirect('pages/browse.ejs');
+    res.render('pages/browse.ejs');
 });
 app.get('/logout',
   function(req, res){
