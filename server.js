@@ -149,6 +149,7 @@ app.get('/searchGenre',
   async function(req, res) {
   try {
     const genre = req.body.genre;
+    console.log("Bubbles Bubbles Bubbles" + genre);
     const client = await pool.connect();
     const result = await client.query(genre);
     genreResults = {
@@ -169,6 +170,7 @@ app.post('/searchType',
   async function(req, res) {
   try {    
     const type = req.body.type;    
+    console.log("Bubbles Bubbles Bubbles" + type);
     const client = await pool.connect();
     const result = await client.query(type);
     typeResults = {
