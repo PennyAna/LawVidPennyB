@@ -127,7 +127,8 @@ input {
 
 }
 radio {
-
+	background-color: var(--color-accent);
+	color: var(--black);
 }
 #genreBtn {
 
