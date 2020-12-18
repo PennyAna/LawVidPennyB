@@ -97,19 +97,19 @@ function(req, res) {
 // });
 app.post('/addMedia',   
   async function(req, res) {
-    try {
-      const query = `INSERT INTO media_table (title_name, genre_type, media_type) VALUES ('Frozen', 'Animation', 'film')`;
-      runQuery(JSON.stringify(query), 
-        function(err, result) {
-          if (err) {throw (err)}
-          else {
-            console.log("Bubbles Bubbles Bubbles" + JSON.parse(result));
-          }
-          });
-    } catch (err) {
-          console.error("insertError" + err);
-          res.send("Error (insertError)" + err);
-      }
+    // try {
+    //   const query = `INSERT INTO media_table (title_name, genre_type, media_type) VALUES ('Frozen', 'Animation', 'film')`;
+    //   runQuery(JSON.stringify(query), 
+    //     function(err, result) {
+    //       if (err) {throw (err)}
+    //       else {
+    //         console.log("Bubbles Bubbles Bubbles" + JSON.parse(result));
+    //       }
+    //       });
+    // } catch (err) {
+    //       console.error("insertError" + err);
+    //       res.send("Error (insertError)" + err);
+    //   }
       });
 const browseResults = {};
 app.get('/searchAll',
@@ -146,18 +146,18 @@ app.get('/searchAll',
 const genreResults = {};
 app.get('/searchGenre', 
   async function(req, res) {
-  try {
-    const genre = req.body.genre;
-    runQuery(JSON.stringify(genre), function(err, result) {
-      if (err) { throw(err);}
-      else {
-        genreResults = JSON.parse(result);
-      }
-    });     
-  } catch (err) {
-    console.error("genreError" + err);
-    res.send("Error (genreError)" + err);
-  }
+  // try {
+  //   const genre = req.body.genre;
+  //   runQuery(JSON.stringify(genre), function(err, result) {
+  //     if (err) { throw(err);}
+  //     else {
+  //       genreResults = JSON.parse(result);
+  //     }
+  //   });     
+  // } catch (err) {
+  //   console.error("genreError" + err);
+  //   res.send("Error (genreError)" + err);
+  // }
 });
 app.get('/searchGenreSuccess', 
   function(req, res) {
@@ -167,19 +167,19 @@ app.get('/searchGenreSuccess',
 const typeResults = {};
 app.post('/searchType', 
   async function(req, res) {
-  try {    
-   const type = req.body.type;
-   runQuery(JSON.stringify(type), function (err, result) {
-     if(err) {throw(err);}
-     else{
-       typeResults = JSON.parse(result);
-     }
-   });
-  } catch (err) { 
-    console.error("typeError " + err);
-    res.send("Error (typeError)" + err);
-  }
-}); 
+//   try {    
+//    const type = req.body.type;
+//    runQuery(JSON.stringify(type), function (err, result) {
+//      if(err) {throw(err);}
+//      else{
+//        typeResults = JSON.parse(result);
+//      }
+//    });
+//   } catch (err) { 
+//     console.error("typeError " + err);
+//     res.send("Error (typeError)" + err);
+//   }
+// }); 
 
 app.get('/searchTypeSuccess', 
 function(req, res) {
@@ -197,17 +197,17 @@ app.listen(app.get('port'), function() {
 console.log('Now listening for connections on port: ', app.get('port'));
 });
 
-function runQuery (queryString, cb) {
-  const results = {};
-  const client = pool.connect();
-  const result = function (req, err) {
-    client.query(queryString);
-    client.release();
-    if (err) { 
-      console.log("queryError " + err.stack);
-    } else {
-      results =  {
-        'result': (result) ? result.rows: null
-      }}};
-  return cb(err, results);
-};
+// function runQuery (queryString, cb) {
+//   const results = {};
+//   const client = pool.connect();
+//   const result = function (req, err) {
+//     client.query(queryString);
+//     client.release();
+//     if (err) { 
+//       console.log("queryError " + err.stack);
+//     } else {
+//       results =  {
+//         'result': (result) ? result.rows: null
+//       }}};
+//   return cb(err, results);
+// };
