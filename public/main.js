@@ -10,6 +10,7 @@ function searchType(){
     for (i = 0; i < typeChoice.length; i++){
         if (typeChoice[i].checked) {
             typeRadioVal = typeChoice[i].value;
+            console.log("Bubbles Bubbles Bubbles" + typeRadioVal);
     }}
     switch(typeRadioVal) {
         case 'film': 
@@ -46,6 +47,7 @@ function searchGenre() {
     for (i = 0; i < genreChoice.length; i++){
         if (genreChoice[i].checked) {
             genreRadioVal = genreChoice[i].value;
+            console.log("Bubbles Bubbles Bubbles" + genreRadioVal);
     }}
     switch(genreRadioVal) {
         case 'Action': 
