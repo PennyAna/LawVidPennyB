@@ -212,6 +212,6 @@ function runQuery (queryString, cb) {
     } else {
       results =  {
         'result': (result) ? result.rows: null
-      }}}
+      }}};
   client.release();
 };
