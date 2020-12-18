@@ -82,8 +82,10 @@ app.get('/searchAll', async function(req, res) {
     try {   
         const client = await pool.connect();
         const result = await client.query('SELECT * FROM media_table');
-        const results = { 'results': (result) ? result.rows: null};
-        res.render('pages/search.ejs', results);
+        const results = { 'result': (result) ? result.rows: null};
+        if (results) {
+            res.render('pages/genre.ejs', results);
+            }
         client.release();
     } catch (err) {
         console.error(err);
@@ -94,8 +96,10 @@ app.get('/searchType', async function(req, res) {
     try {   
         const client = await pool.connect();
         const result = await client.query(`SELECT * FROM media_table WHERE media_type = 'film'`);
-        const results = { 'results': (result) ? result.rows: null};
-        res.render('pages/type.ejs', results);
+        const results = { 'result': (result) ? result.rows: null};
+        if (results) {
+            res.render('pages/type.ejs', results);
+            }
         client.release();
     } catch (err) {
         console.error(err);
@@ -106,8 +110,10 @@ app.get('/searchGenre', async function(req, res) {
     try {   
         const client = await pool.connect();
         const result = await client.query(`SELECT * FROM media_table WHERE genre_type = 'Action'`);
-        const results = { 'results': (result) ? result.rows: null};
+        const results = { 'result': (result) ? result.rows: null};
+        if (results) {
         res.render('pages/genre.ejs', results);
+        }
         client.release();
     } catch (err) {
         console.error(err);
