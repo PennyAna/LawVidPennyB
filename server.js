@@ -75,7 +75,7 @@ app.get('/', function(req, res) {
 });
 app.get('/browse',
    function(req, res){
-     res.render('partials/login.ejs');
+     res.render('pages/browse.ejs');
    });
 app.post('/browse', 
   passport.authenticate('local', { failureRedirect: '/' }),
@@ -91,9 +91,6 @@ app.get('/add',
 function(req, res) {
   res.render('pages/add.ejs');
 });
-// app.get('/browse', function(req, res) {
-//   res.render('pages/browse.ejs');
-// });
 // app.get('/profile', 
 // require('connect-ensure-login').ensureLoggedIn(),
 // function(req, res){
