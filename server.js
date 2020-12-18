@@ -79,7 +79,7 @@ app.get('/login',
 app.post('/login', 
   passport.authenticate('local', { failureRedirect: 'partials/login.ejs' }),
   function(req, res) {
-    res.redirect('pages/browse.ejs');
+    res.render('pages/browse.ejs');
 });
 app.get('/logout',
   function(req, res){
@@ -93,11 +93,11 @@ function(req, res) {
 app.get('/browse', function(req, res) {
   res.render('pages/browse.ejs');
 });
-app.get('/profile', 
-require('connect-ensure-login').ensureLoggedIn(),
-function(req, res){
-  res.render('partials/profile.ejs', { user: req.user });
-});
+// app.get('/profile', 
+// require('connect-ensure-login').ensureLoggedIn(),
+// function(req, res){
+//   res.render('partials/profile.ejs', { user: req.user });
+// });
 app.post('/addMedia',  
   async function(req, res) {
     try {
