@@ -29,7 +29,7 @@ function searchType(){
         data: {type: typeReq},
         url: "/searchType",
         dataType: "text", 
-        success: renderType, 
+        success: "/searchTypeSuccess", 
         error: function() {
             alert("Please Try Again");
         },
@@ -85,9 +85,10 @@ function searchGenre() {
         type:"POST",
         data: {genre: genreReq},
         url: "/searchGenre",
-        dataType: "text",  
-            error: function() {
-            alert("Please Try Again");
+        dataType: "text", 
+        success: "/searchGenreSuccess",
+        error: function() {
+        alert("Please Try Again");
         },
     });
 }

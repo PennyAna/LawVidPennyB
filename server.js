@@ -4,6 +4,7 @@ const passport = require('passport');
 const Strategy = require('passport-local').Strategy;
 const path = require('path');
 const db = require('./db');
+const { json } = require('express');
 //app.post('/endpoint', function (req, res) {
 //var form = new multiparty.Form();
 //form.parse(req, function(err, fields, files) {
@@ -14,7 +15,7 @@ const db = require('./db');
 const app = express();
 //bodyparser
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended:true}));
 
 // Configure the local strategy for use by Passport.
 //
@@ -141,39 +142,46 @@ app.get('/searchAll',
         res.send("Error " + err);
     }
 });
+const genreResults = {};
 app.get('/searchGenre', 
   async function(req, res) {
   try {
     const genre = req.body.genre;
     const client = await pool.connect();
     const result = await client.query(genre);
-    const results = {
+    genreResults = {
       'result': (result) ? result.rows:null
     };
-    res.render('pages/genre.ejs', results);
     client.release();
   } catch (err) {
     console.error(err);
     res.send("Error " + err);
   }
 });
+app.get('/searchGenreSuccess', 
+  function(req, res) {
+    res.render("pages/genre.ejs", genreResults);
+  });
+  const typeResults = {};
 app.post('/searchType', 
   async function(req, res) {
   try {    
     const type = req.body.type;    
     const client = await pool.connect();
     const result = await client.query(type);
-    const results = {
+    typeResults = {
       'result': (result) ? result.rows: null
     };
-    res.render('pages/type.ejs', results);
     client.release();
   } catch (err) { 
     console.error(error);
     res.send("Error " + err);
   }
 }); 
-
+app.get('/searchTypeSuccess', 
+  function(req, res) {
+    res.render("pages/type.ejs", typeResults);
+  });
 const {Pool} = require('pg');
 const pool = new Pool({
 connectionString: process.env.DATABASE_URL, 
