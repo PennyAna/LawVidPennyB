@@ -102,10 +102,10 @@ app.get('/browse', function(req, res) {
 app.post('/addMedia',  
   async function(req, res) {
     try {
-      const query = "INSERT INTO media_table (title_name, genre_type, media_type) VALUES ('Frozen', 'Animation', 'film')";
+      const query = `INSERT INTO media_table (title_name, genre_type, media_type) VALUES ('Frozen', 'Animation', 'film')`;
       const client = await pool.connect();
       await client.query('BEGIN');
-      await JSON.stringify(client.query(query, 
+      JSON.stringify(client.query(query, 
         function(err, result) {
           if (result.rows[0]) {
             console.log("Warning, this is already in the database");
@@ -123,8 +123,10 @@ app.post('/addMedia',
               }
           }}}));
           client.release();
-        }
-        catch(err) {throw(err);}
+    } catch (err) {
+          console.error(err);
+          res.send("Error " + err);
+      }
       });
 
 app.get('/searchAll', 
