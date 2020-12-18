@@ -10,8 +10,8 @@ html {
   position: relative;
   min-height: 100%;
 }
-header {
-	position: absolute;
+.jumbotron {
+
 }
 body {
   position: relative;
@@ -47,17 +47,14 @@ row {
   display: block;
 }
 .formDiv {
-	max-width: 100%;
+
 }
 .container-fluid {
-	max-width: 100%;
+
 }
 forms {
-	max-width: 100%;
+
 }
-.jumbotron {
-	
-  }
 /*index page*/
 #loginBtn {
 
