@@ -32,7 +32,7 @@ body {
 	position: relative;
 }
 .sidenav {
- max-width: 100%;
+
 }
 .hidden {
   display: none;
@@ -49,6 +49,9 @@ body {
 forms {
 	max-width: 100%;
 }
+.jumbotron {
+	max-width: 100%;
+  }
 /*index page*/
 #loginBtn {
 
@@ -61,9 +64,6 @@ forms {
 }
 /*index page*/
 /*browse page*/
-.jumbotron {
-  
-}
 .browseDiv {
 
 }
