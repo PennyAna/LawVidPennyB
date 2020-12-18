@@ -14,6 +14,7 @@ html {
 }
 .jumbotron {
 	background-color: var(--color-dark);
+	padding: 30px;
 }
 body {
   position: relative;
@@ -23,6 +24,7 @@ body {
   align-content: center;
   justify-content: center;
   color: var(--black);
+  padding: 30px;
 }
 row {
 }
