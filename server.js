@@ -71,14 +71,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 // Define routes
 app.get('/', function(req, res) {
-  res.render('pages/index.ejs', {user: req.user});
+  res.render('pages/index.ejs');
 });
 // app.get('/login',
 //   function(req, res){
-//     res.render('pages/browse.ejs');
+//     res.render('partials/login.ejs');
 //   });
 app.post('/login', 
-  passport.authenticate('local', { failureRedirect: 'pages/index.ejs' }),
+  passport.authenticate('local', { failureRedirect: 'partials/login.ejs' }),
   function(req, res) {
     res.render('pages/browse.ejs');
 });
