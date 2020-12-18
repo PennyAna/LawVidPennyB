@@ -123,6 +123,7 @@ app.post('/addMedia',
               }
           }}}));
           client.release();
+          pool.end().then(() => console.log('pool has ended'));
     } catch (err) {
           console.error(err);
           res.send("Error " + err);
@@ -139,6 +140,7 @@ app.get('/searchAll',
         };
         res.render('pages/search.ejs', results);
         client.release();
+        pool.end().then(() => console.log('pool has ended'));
     } catch (err) {
         console.error(err);
         res.send("Error " + err);
@@ -156,6 +158,7 @@ app.get('/searchGenre',
       'result': (result) ? result.rows:null
     };
     client.release();
+    pool.end().then(() => console.log('pool has ended'));
   } catch (err) {
     console.error(err);
     res.send("Error " + err);
@@ -177,6 +180,7 @@ app.post('/searchType',
       'result': (result) ? result.rows: null
     };
     client.release();
+    pool.end().then(() => console.log('pool has ended'));
   } catch (err) { 
     console.error(error);
     res.send("Error " + err);
