@@ -233,7 +233,7 @@ app.get('/searchTypeSuccess',
   function(req, res) {
     res.render("pages/type.ejs", typeResults);
   });
-  
+
 const {Pool} = require('pg');
 const pool = new Pool({
 connectionString: process.env.DATABASE_URL, 
@@ -241,7 +241,7 @@ ssl: {
   rejectUnauthorized: false
 } 
 });
-const client = await pool.connect();
+const client = pool.connect();
 app.listen(app.get('port'), function() {
 console.log('Now listening for connections on port: ', app.get('port'));
 });
