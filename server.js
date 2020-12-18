@@ -192,29 +192,40 @@ app.get('/searchTypeSuccess',
   });
 
 const {Pool} = require('pg');
-const pool = new Pool({
-connectionString: process.env.DATABASE_URL, 
-ssl: {
-  rejectUnauthorized: false
-}, 
-max: 20, 
-idleTimeoutMillis: 30000, connectionTimeoutMillis: 2000,
-});
-const client = pool.connect();
+const pool = new Pool();
+//emit error if idle clients -> backend error/network partition
+pool.on('error', (err, client) => {
+  console.error('Unexpected error on idle client', err);
+  process.exit(-1);
+})
+console.log('calling end');
+await pool.end();
+console.log('pool has drained');
+//callback -checkout client
+
+
+//   {
+// connectionString: process.env.DATABASE_URL, 
+// ssl: {
+//   rejectUnauthorized: false
+// }, 
+// max: 20, 
+// idleTimeoutMillis: 30000, connectionTimeoutMillis: 2000,
+// });
+// const client = pool.connect();
 app.listen(app.get('port'), function() {
 console.log('Now listening for connections on port: ', app.get('port'));
 });
 
 function runQuery (queryString, callback) {
   const results = {};
-  client.query(queryString, function(err, result) {
-    if(err) {
-      console.error(err);
-    }
-    results = {
-      'result': (result) ? result.rows: null
-    };
-    client.release(); 
-  })
+  pool.connect((err, client, done) => {
+    if (err) {throw(err)};
+    client.query(queryString, [1], (err, res) => { done();
+    if (err) { 
+      console.log(err.stack);
+    }else {
+      results = res.rows[0];
+    }})});
   return results;
 }
