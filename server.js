@@ -205,12 +205,13 @@ console.log('Now listening for connections on port: ', app.get('port'));
 function runQuery (queryString, cb) {
   const results = {};
   const client = pool.connect();
-  const result = client.query(queryString, err);
-  if (err) { 
-    console.log(err.stack);
+  const result = function (req, err) {
+    client.query(queryString);
+    if (err) { 
+      console.log(err.stack);
     } else {
       results =  {
         'result': (result) ? result.rows: null
-    };}
+      }}}
   client.release();
-}
+};
