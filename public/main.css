@@ -93,7 +93,7 @@ forms {
 
 }
 #media_title {
-
+	max-width: 75%;
 }
 #addInfoMedia {
 
@@ -104,6 +104,14 @@ forms {
 }
 #film {
 
+}
+button {
+	background-color: var(--color-accent);
+	color: var(--black);
+}
+input {
+	background-color: var(--color-accent);
+	color: var(--black);
 }
 #tv {
 
