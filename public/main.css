@@ -14,12 +14,12 @@ html {
 body {
   position: relative;
   background-color: rgb(245, 235, 235);
-  width: 50%;
+  width: 100%;
   height: auto;
   align-content: center;
   justify-content: center;
-  margin-left:25%;
-  margin-right:25%;
+  margin-left:10%;
+  margin-right:10%;
 }
 .col-sm-3 {
 	max-width: 25%;
@@ -46,7 +46,7 @@ body {
 .container {
 
 }
-form {
+forms {
 	max-width: 100%;
 }
 /*index page*/
