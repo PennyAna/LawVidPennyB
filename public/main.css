@@ -25,6 +25,7 @@ body {
   justify-content: center;
   color: var(--black);
 }
+
 row {
 }
 .col-sm-3 {
@@ -33,7 +34,7 @@ row {
 	position: relative;
 	max-height: 100%;
 	background-color: var(--color-dark-two);
-	color: var(--color-accent);
+	color: var(--black);
 	padding: 50px;
 }
 .col-sm-9 {
@@ -42,7 +43,7 @@ row {
 	position: relative;
 	max-height: 100%;
 	background-color: var(--color-light-two);
-	color: var(--color-accent);
+	color: var(--color-black);
 	padding: 20px;
 }
 .sidenav {
