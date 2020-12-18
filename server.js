@@ -115,23 +115,34 @@ const browseResults = {};
 app.get('/searchAll',
     async function(req, res) {
       try {
-        const query = 'SELECT * FROM media_table ORDER BY title_name ASC';
-        runQuery(JSON.stringify(query), 
-          function(err, result) {
-                if (err) {
-                  throw(err);
-                  res.redirect('/browse');
-                } else{
-                   browseResults = JSON.parse(result);
-                  res.redirect('/add');
-                  return;
-                }
-              });
-      }catch (err) {
-        console.error("allError" + err);
-        res.send("Error (allError)" + err);
-    }
-});
+        const client = await pool.connect();
+        const result = await client.query('SELECT * FROM media_table');
+        const results = {
+          'result': (result) ? result.rows: null
+        }
+        res.render('pages/search.ejs');
+        client.release();
+      } catch (err) {
+        console.error(err);
+        res.send("Error " + err);
+      }});
+           //   const query = 'SELECT * FROM media_table ORDER BY title_name ASC';
+      //   runQuery(JSON.stringify(query), 
+      //     function(err, result) {
+      //           if (err) {
+      //             throw(err);
+      //             res.redirect('/browse');
+      //           } else{
+      //              browseResults = JSON.parse(result);
+      //             res.redirect('/add');
+      //             return;
+      //           }
+      //         });
+      // }catch (err) {
+      //   console.error("allError" + err);
+      //   res.send("Error (allError)" + err);
+//     }
+// });
 const genreResults = {};
 app.get('/searchGenre', 
   async function(req, res) {
