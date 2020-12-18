@@ -97,6 +97,7 @@ function(req, res) {
 // });
 app.post('/addMedia',   
   async function(req, res) {
+    const result = {};
     // try {
     //   const query = `INSERT INTO media_table (title_name, genre_type, media_type) VALUES ('Frozen', 'Animation', 'film')`;
     //   runQuery(JSON.stringify(query), 
@@ -146,6 +147,7 @@ app.get('/searchAll',
 const genreResults = {};
 app.get('/searchGenre', 
   async function(req, res) {
+    const result = {};
   // try {
   //   const genre = req.body.genre;
   //   runQuery(JSON.stringify(genre), function(err, result) {
@@ -168,6 +170,7 @@ const typeResults = {};
 app.post('/searchType', 
   async function(req, res) {
   // try {    
+    const result = {};
 //    const type = req.body.type;
 //    runQuery(JSON.stringify(type), function (err, result) {
 //      if(err) {throw(err);}
