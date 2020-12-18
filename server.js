@@ -80,7 +80,7 @@ app.get('/', function(req, res) {
 app.post('/login', 
   passport.authenticate('local', { failureRedirect: '/' }),
   function(req, res) {
-    res.render('pages/browse.ejs');
+    res.render('/browse');
 });
 app.get('/logout',
   function(req, res){
@@ -92,7 +92,7 @@ function(req, res) {
   res.render('pages/add.ejs');
 });
 app.get('/browse', function(req, res) {
-  res.render('pages/browse.ejs', {user: req.user});
+  res.render('pages/browse.ejs');
 });
 // app.get('/profile', 
 // require('connect-ensure-login').ensureLoggedIn(),
@@ -108,7 +108,7 @@ app.post('/addMedia',
         function(err, result) {
           if (result.rows[0]) {
             console.log("Warning, this is already in the database");
-            res.redirect('/browse', {user: req.user});
+            res.redirect('/browse');
           }
           else {
             client.query(query, function (err, result) {
@@ -117,7 +117,7 @@ app.post('/addMedia',
                 client.query('COMMIT');
                 console.log(result);
                 console.log("Success!");
-                res.redirect('/add', {user: req.user});
+                res.redirect('/add');
                 return;
               }
             })}
@@ -137,7 +137,7 @@ app.get('/searchAll',
           function(err, result) {
             if (result.rows[0]) {
               console.log("Warning, this is already in the database");
-              res.redirect('/add', {user: req.user});
+              res.redirect('/add');
             }
             else {
               client.query(query, function (err, result) {
@@ -149,7 +149,7 @@ app.get('/searchAll',
                     'result': (result) ? result.rows: null
                   };
                   console.log("Success!");
-                  res.redirect('/add', {user: req.user});
+                  res.redirect('/add');
                   return;
                 }
               })}}));
@@ -164,29 +164,7 @@ app.get('/searchGenre',
   async function(req, res) {
   try {
     const genre = req.body.genre;
-        JSON.stringify(client.query(genre, 
-          function(err, result) {
-            if (result.rows[0]) {
-              console.log("Warning, this is already in the database");
-              res.redirect('/browse', {user: req.user});
-            }
-            else {
-              client.query(query, function (err, result) {
-                if (err) {console.log(err);}
-                else{
-                  client.query('COMMIT');
-                  console.log(result);
-                   genreResults = { 
-                    'result': (result) ? result.rows: null
-                  };
-                  console.log("Success!");
-                  res.redirect('/add', {user: req.user});
-                  return;
-                }
-              })}}));
-  
-    console.log("Bubbles Bubbles Bubbles" + genre);
-    client.release();
+    genreResults = runQuery(JSON.stringify(genre));     
   } catch (err) {
     console.error(err);
     res.send("Error " + err);
@@ -202,27 +180,7 @@ app.post('/searchType',
   async function(req, res) {
   try {    
    const type = req.body.type;
-        JSON.stringify(client.query(type, 
-          function(err, result) {
-            if (result.rows[0]) {
-              console.log("Warning, this is already in the database");
-              res.redirect('/browse', {user: req.user});
-            }
-            else {
-              client.query(query, function (err, result) {
-                if (err) {console.log(err);}
-                else{
-                  client.query('COMMIT');
-                  console.log(result);
-                   typeResults = { 
-                    'result': (result) ? result.rows: null
-                  };
-                  console.log("Success!");
-                  res.redirect('/add', {user: req.user});
-                  return;
-                }
-              })}}));
-    client.release();
+   typeResults = runQuery(JSON.stringify(type));
   } catch (err) { 
     console.error(error);
     res.send("Error " + err);
@@ -239,9 +197,25 @@ const pool = new Pool({
 connectionString: process.env.DATABASE_URL, 
 ssl: {
   rejectUnauthorized: false
-} 
+}, 
+max: 20, 
+idleTimeoutMillis: 30000, connectionTimeoutMillis: 2000,
 });
 const client = pool.connect();
 app.listen(app.get('port'), function() {
 console.log('Now listening for connections on port: ', app.get('port'));
 });
+
+function runQuery (queryString, callback) {
+  const results = {};
+  client.query(queryString, function(err, result) {
+    if(err) {
+      console.error(err);
+    }
+    results = {
+      'result': (result) ? result.rows: null
+    };
+    client.release(); 
+  })
+  return results;
+}
