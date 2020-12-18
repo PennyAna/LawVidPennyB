@@ -4,7 +4,6 @@ const passport = require('passport');
 const Strategy = require('passport-local').Strategy;
 const path = require('path');
 const db = require('./db');
-const { json } = require('express');
 //app.post('/endpoint', function (req, res) {
 //var form = new multiparty.Form();
 //form.parse(req, function(err, fields, files) {
@@ -108,7 +107,7 @@ app.post('/addMedia',
           }
           });
     } catch (err) {
-          console.error(err);
+          console.error("insertError" + err);
           res.send("Error " + err);
       }
       });
@@ -120,8 +119,8 @@ app.get('/searchAll',
         runQuery(JSON.stringify(query), 
           function(err, result) {
                 if (err) {
-                  console.log(err);
-                res.redirect('/browse');
+                  throw(err);
+                  res.redirect('/browse');
                 } else{
                    browseResults = JSON.parse(result);
                   res.redirect('/add');
@@ -129,7 +128,7 @@ app.get('/searchAll',
                 }
               });
       }catch (err) {
-        console.error(err);
+        console.error("allError" + err);
         res.send("Error " + err);
     }
 });
@@ -145,7 +144,7 @@ app.get('/searchGenre',
       }
     });     
   } catch (err) {
-    console.error(err);
+    console.error("genreError" + err);
     res.send("Error " + err);
   }
 });
@@ -166,7 +165,7 @@ app.post('/searchType',
      }
    });
   } catch (err) { 
-    console.error(err);
+    console.error("typeError " + err);
     res.send("Error " + err);
   }
 }); 
@@ -204,7 +203,7 @@ function runQuery (queryString, cb) {
     client.query(queryString);
     client.release();
     if (err) { 
-      console.log(err.stack);
+      console.log("queryError " + err.stack);
     } else {
       results =  {
         'result': (result) ? result.rows: null
