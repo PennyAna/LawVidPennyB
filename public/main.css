@@ -22,8 +22,6 @@ body {
   height: auto;
   align-content: center;
   justify-content: center;
-  margin-left:10%;
-  margin-right:10%;
   color: var(--black);
 }
 row {
