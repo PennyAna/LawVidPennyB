@@ -119,7 +119,7 @@ app.get('/searchAll',
         const result = await client.query('SELECT * FROM media_table');
         const results = {
           'result': (result) ? result.rows: null
-        }
+        };
         res.render('pages/search.ejs');
         client.release();
       } catch (err) {
@@ -167,7 +167,7 @@ app.get('/searchGenreSuccess',
 const typeResults = {};
 app.post('/searchType', 
   async function(req, res) {
-//   try {    
+  // try {    
 //    const type = req.body.type;
 //    runQuery(JSON.stringify(type), function (err, result) {
 //      if(err) {throw(err);}
@@ -178,8 +178,8 @@ app.post('/searchType',
 //   } catch (err) { 
 //     console.error("typeError " + err);
 //     res.send("Error (typeError)" + err);
-//   }
-// }); 
+  // }
+}); 
 
 app.get('/searchTypeSuccess', 
 function(req, res) {
