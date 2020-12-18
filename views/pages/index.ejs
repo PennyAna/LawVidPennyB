@@ -10,21 +10,6 @@
                     <% include ../partials/login.ejs %>
             <% } %>
         </div>
-        <div id="userDiv">  
-            <% if (user) { %>            
-                Hello, <%= user.name %><br> 
-                Click <a href="/browse">Here</a> to View the Database
-                <!--reroute to db page-->
-                <br>
-                Or view your 
-               
-             <input id="profileBtn" type="button" value="Profile"/>
-                <div id="profileDiv" class="hidden">
-                    <% include ../partials/profile.ejs %>
-                </div> 
-                Or <a href="logout">Log Out</a>
-            <% } %>
-        </div>
     </div>
     <script src="../../public/main.js"></script>
 </body>

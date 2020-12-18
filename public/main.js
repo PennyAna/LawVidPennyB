@@ -1,10 +1,3 @@
-document.getElementById('profileBtn').addEventListener('click', changeProfileView);
-const profile = document.getElementById('profileDiv');
-function changeProfileView() {
-    if (profile.className == 'hidden') {
-        profile.className = 'visible';
-    }
-} 
   //for searchTypeForm w/click browseBtn
 //vars radiox3: film, tv, game
 document.getElementById('browseBtn').addEventListener('click', searchType);
