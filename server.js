@@ -213,5 +213,5 @@ function runQuery (queryString, cb) {
       results =  {
         'result': (result) ? result.rows: null
       }}};
-  client.release();
+  client.release;
 };
