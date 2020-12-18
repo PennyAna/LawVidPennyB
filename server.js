@@ -73,10 +73,10 @@ app.use(passport.session());
 app.get('/', function(req, res) {
   res.render('pages/index.ejs');
 });
-// app.get('/login',
-//   function(req, res){
-//     res.render('partials/login.ejs');
-//   });
+app.get('/browse',
+   function(req, res){
+     res.render('partials/login.ejs');
+   });
 app.post('/browse', 
   passport.authenticate('local', { failureRedirect: '/' }),
   function(req, res) {
@@ -187,8 +187,6 @@ pool.on('error', (err, client) => {
   process.exit(-1);
 })
 //callback -checkout client
-
-
 //   {
 // connectionString: process.env.DATABASE_URL, 
 // ssl: {
@@ -207,11 +205,12 @@ function runQuery (queryString, cb) {
   const client = pool.connect();
   const result = function (req, err) {
     client.query(queryString);
+    client.release();
     if (err) { 
       console.log(err.stack);
     } else {
       results =  {
         'result': (result) ? result.rows: null
       }}};
-  client.release;
+  return cb(results);
 };
