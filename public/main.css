@@ -14,10 +14,12 @@ html {
 }
 .navpills.li {
 	border-radius: 8px;
+	color: antiquewhite;	
 }
 .jumbotron {
 	background-color: var(--color-dark);
 	padding: 30px;
+	color: antiquewhite;
 }
 body {
   background-color: var(--color-light-two);
@@ -30,6 +32,9 @@ body {
 }
 row {
 	height: 1500px;
+}
+h1 {
+	color: antiquewhite;
 }
 .col-sm-3 {
 	max-width: 25%;
