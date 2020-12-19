@@ -146,8 +146,8 @@ app.get('/rapidAPI',
         else {
           res.render('pages/rapidApi.ejs', JSON.parse(body));
           console.log(body);
-      });
-    } catch(err) {
+        }})}
+        catch(err) {
       console.error(err);
       res.send("Error (googleError)" + err);
     }
