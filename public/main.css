@@ -37,7 +37,7 @@ row {
 h1 {
 	color: var(--color-accent);
 }
-.col-3 {
+.col-sm-3 {
 	max-width: 25%;
 	max-height: 100%;
 	float: left;
@@ -47,7 +47,7 @@ h1 {
 	padding: 50px;
 	margin: 0px;
 }
-.col-9 {
+.col-sm-9 {
 	max-width: 75%;
 	float: right;
 	position: relative;
