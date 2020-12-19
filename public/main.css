@@ -32,11 +32,12 @@ body {
   margin-bottom: 30px;
 }
 row {
+
 }
 h1 {
 	color: var(--color-accent);
 }
-.col-sm-3 {
+.col-3 {
 	max-width: 25%;
 	max-height: 100%;
 	float: left;
@@ -45,13 +46,13 @@ h1 {
 	color: var(--black);
 	padding: 50px;
 }
-.col-sm-9 {
+.col-9 {
 	max-width: 75%;
 	float: right;
 	position: relative;
 	max-height: 100%;
 	background-color: var(--color-light-two);
-	color: var(--color-black);
+	color: var(--black);
 	padding: 20px;
 }
 .sidenav {
