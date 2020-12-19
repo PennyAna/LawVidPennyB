@@ -138,17 +138,31 @@ async function(req, res) {
         res.send("Error (genreError) " + err);
     }
 }) 
-
-const options = {
-   method: 'GET',
-   url: 'https://movie-database-imdb-alternative.p.rapidapi.com/',
-   qs: {s: 'Avengers Endgame', page: '1', r: 'json'},
-   headers: {
-     'x-rapidapi-key': 'e3a2dd1811mshfaa5402ffaa8014p12ff5ajsn2b3b415ab9d9',
-     'x-rapidapi-host': 'movie-database-imdb-alternative.p.rapidapi.com',
-     useQueryString: true
-   }
- };
+app.get('/rapidAPI', 
+  async function(req, res) {
+    try{
+      request.get(req.body.url + req.body.qs + "&maxResults=36&OrderBy=relevance", {json: true}, (error, data) => {
+        if (error) {
+          return console.log(err);
+          throw(error);}
+          res.type('json');
+          res.json(data.body)
+        })
+    } catch(err) {
+      console.error(err);
+      res.send("Error (googleError)" + err);
+    }
+  });
+// const options = {
+//    method: 'GET',
+//    url: 'https://movie-database-imdb-alternative.p.rapidapi.com/',
+//    qs: {s: 'Avengers Endgame', page: '1', r: 'json'},
+//    headers: {
+//      'x-rapidapi-key': 'e3a2dd1811mshfaa5402ffaa8014p12ff5ajsn2b3b415ab9d9',
+//      'x-rapidapi-host': 'movie-database-imdb-alternative.p.rapidapi.com',
+//      useQueryString: true
+//    }
+//  };
 
  request(options, function (error, response, body) {
  	if (error) throw new Error(error);

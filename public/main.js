@@ -1,4 +1,15 @@
-  //for searchTypeForm w/click browseBtn
+const options = {
+  method: 'GET',
+  url: 'https://movie-database-imdb-alternative.p.rapidapi.com/',
+  qs: {s: 'Avengers Endgame', page: '1', r: 'json'},
+  headers: {
+    'x-rapidapi-key': 'e3a2dd1811mshfaa5402ffaa8014p12ff5ajsn2b3b415ab9d9',
+    'x-rapidapi-host': 'movie-database-imdb-alternative.p.rapidapi.com',
+    useQueryString: true
+  }
+};
+
+//for searchTypeForm w/click browseBtn
 //vars radiox3: film, tv, game
 // document.getElementById('browseBtn').addEventListener('click', searchType);
 // //for searchTypeForm w/click browseBtn
