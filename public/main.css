@@ -18,7 +18,7 @@ html {
 	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif	
 }
 .jumbotron {
-	background-color: var(--color-light-two);
+	background-color: var(--color-dark-two);
 	padding: 30px;
 	color: var(--color-accent);
 }
