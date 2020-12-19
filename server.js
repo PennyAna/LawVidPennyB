@@ -141,34 +141,29 @@ async function(req, res) {
 app.get('/rapidAPI', 
   async function(req, res) {
     try{
-      request.get(req.body.url + req.body.qs + "&maxResults=36&OrderBy=relevance", {json: true}, (error, data) => {
-        if (error) {
-          return console.log(err);
-          throw(error);}
-          res.type('json');
-          res.json(data.body)
-        })
+      request(options, function (error, response, body) {
+        if (error) {throw new Error(error);}
+        else {
+          res.render('pages/rapidApi.ejs', JSON.parse(body));
+          console.log(body);
+      });
     } catch(err) {
       console.error(err);
       res.send("Error (googleError)" + err);
     }
   });
-// const options = {
-//    method: 'GET',
-//    url: 'https://movie-database-imdb-alternative.p.rapidapi.com/',
-//    qs: {s: 'Avengers Endgame', page: '1', r: 'json'},
-//    headers: {
-//      'x-rapidapi-key': 'e3a2dd1811mshfaa5402ffaa8014p12ff5ajsn2b3b415ab9d9',
-//      'x-rapidapi-host': 'movie-database-imdb-alternative.p.rapidapi.com',
-//      useQueryString: true
-//    }
-//  };
+  
 
- request(options, function (error, response, body) {
- 	if (error) throw new Error(error);
-
- 	console.log(body);
- });
+const options = {
+  method: 'GET',
+  url: 'https://movie-database-imdb-alternative.p.rapidapi.com/',
+  qs: {s: 'Avengers Endgame', page: '1', r: 'json'},
+  headers: {
+    'x-rapidapi-key': 'e3a2dd1811mshfaa5402ffaa8014p12ff5ajsn2b3b415ab9d9',
+    'x-rapidapi-host': 'movie-database-imdb-alternative.p.rapidapi.com',
+    useQueryString: true
+  }
+};
 const {Pool} = require('pg');
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL, 
