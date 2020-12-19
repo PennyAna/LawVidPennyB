@@ -42,7 +42,6 @@ h1 {
 	max-width: 25%;
 	float: left;
 	position: relative;
-	max-height: 125%;
 	background-color: var(--color-dark-two);
 	color: var(--black);
 	padding: 50px;
