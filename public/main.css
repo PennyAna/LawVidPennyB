@@ -32,7 +32,6 @@ body {
   margin-bottom: 30px;
 }
 row {
-	height: 1500px;
 }
 h1 {
 	color: var(--color-accent);
