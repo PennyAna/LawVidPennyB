@@ -21,7 +21,7 @@ html {
 	background-color: var(--color-dark);
 	padding: 30px;
 	color: var(--color-accent);
-	max-width: 75%;
+	margin-left: 25%;
 }
 body {
   background-color: var(--color-light-two);
