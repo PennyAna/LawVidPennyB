@@ -28,6 +28,7 @@ body {
   height: auto;
   align-content: center;
   justify-content: center;
+  vertical-align:middle;
   color: var(--black);
   margin-bottom: 30px;
 }
