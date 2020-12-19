@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+  content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="postage price calculator">
+  <meta name="keywords" content="postage, node.js, price, calculator, heroku, cs341">
+  <meta name="author" content="Nicole Lawrence">
+  <title>Postage Price Calculator</title>
+  <link rel="stylesheet" type="text/css" href="public/main.css">
+</head>
+<body>
+  <div class="jumbotron">
+    <h1>Postal Prices</h1>
+    <h2>US First Class</h2>
+  </div>
+ 
+  <div id="postalDiv" class="container">
+    <label for="postalDiv" class="postalLabel">Welcome to the First Class Postal Prices Calculator</label>
+    <br><br>
+    <label for="askingForType" class="postalLabel">
+      Please select an option from the list and press submit.</label>
+      <form id="askingForType" class="postalForm">
+        <fieldset class="postalSet">
+            <legend>Type</legend> 
+            <label for="postalType" class="postalLabel">What type is your mail?</label>
+            <select name="postalType" id="postalType">
+              <option
+                id="stampedLetter"
+                name="stampedLetter" value="1">First Class Letter-Stamped
+              </option>
+              <option 
+                id="meteredLetter" name="meteredLetter" value="2">First Class Letter-Metered
+              </option>
+              <option 
+                id="largeEnvelope"
+                name="largeEnvelope" value="3">First Class Large Envelopes
+              </option>
+              <option 
+                id="packageService" name="packageService" value="4">First Class Package Service-Retail
+              </option>
+            </select>
+            <button id="typeBtn" name="typeBtn" class="postalBtn">Submit Type</button>
+        </fieldset>
+    </form>       
+  </div>
+  <div id="weightDiv" name="weightDiv" class="container">
+    <form id="weightForm" name="weightForm" class="postalForm">
+      <fieldset id="weightSet" name="weightSet" class="postalSet">
+        <legend>Weight</legend>
+        <label for="postalWeight" class="postalLabel">How heavy is your mail? </label>
+          <input type="number" class="postalWeightGrp" id="postalWeight1" name="postalWeight" min="0" max="3.5" step=".5">
+          <input type="number" class="postalWeightGrp" id="postalWeight2" name="postalWeight" min="0" max="13" step="1">
+          <button id="weightBtn" name="weightBtn" class="postalBtn">Get Price</button>
+      </fieldset>
+    </form>
+  </div>
+  <script src="public/main.js"></script>
+</body>
+</html>
