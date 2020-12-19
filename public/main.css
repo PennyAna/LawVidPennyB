@@ -45,6 +45,7 @@ h1 {
 	background-color: var(--color-dark-two);
 	color: var(--black);
 	padding: 50px;
+	margin: 0px;
 }
 .col-9 {
 	max-width: 75%;
@@ -54,6 +55,7 @@ h1 {
 	background-color: var(--color-light-two);
 	color: var(--black);
 	padding: 20px;
+	margin: 0px;
 }
 .sidenav {
 
