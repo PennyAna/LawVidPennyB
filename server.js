@@ -144,7 +144,7 @@ app.get('/rapidAPI',
       request(options, function (error, response, body) {
         if (error) {throw new Error(error);}
         else {
-          res.render('pages/rapidApi.ejs', JSON.parse(body));
+          res.render('pages/rapidAPI.ejs', JSON.parse(body));
           console.log(body);
         }})}
         catch(err) {
@@ -152,8 +152,6 @@ app.get('/rapidAPI',
       res.send("Error (googleError)" + err);
     }
   });
-  
-
 const options = {
   method: 'GET',
   url: 'https://movie-database-imdb-alternative.p.rapidapi.com/',
