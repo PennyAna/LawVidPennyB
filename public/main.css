@@ -40,6 +40,7 @@ h1 {
 }
 .col-sm-3 {
 	max-width: 25%;
+	max-height: auto;
 	float: left;
 	position: relative;
 	background-color: var(--color-dark-two);
