@@ -14,12 +14,13 @@ html {
 }
 .navpills.li {
 	border-radius: 8px;
-	color: antiquewhite;	
+	color: var(--color-accent);
+	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif	
 }
 .jumbotron {
 	background-color: var(--color-dark);
 	padding: 30px;
-	color: antiquewhite;
+	color: var(--color-accent);
 }
 body {
   background-color: var(--color-light-two);
@@ -34,7 +35,7 @@ row {
 	height: 1500px;
 }
 h1 {
-	color: antiquewhite;
+	color: var(--color-accent);
 }
 .col-sm-3 {
 	max-width: 25%;
