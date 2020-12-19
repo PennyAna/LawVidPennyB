@@ -12,6 +12,9 @@ html {
 	position: relative;
   	min-height: 100%;
 }
+ul {
+	list-style-type: none;
+}
 .navpills.li {
 	border-radius: 8px;
 	color: var(--black);
