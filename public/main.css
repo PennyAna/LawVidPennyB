@@ -54,8 +54,8 @@ h1 {
 	max-height: 100%;
 	background-color: var(--color-light-two);
 	color: var(--black);
-	padding: 20px;
 	margin: 0px;
+	vertical-align: middle;
 }
 .sidenav {
 
