@@ -4,6 +4,7 @@ const passport = require('passport');
 const Strategy = require('passport-local').Strategy;
 const path = require('path');
 const db = require('./db');
+const request = require('request');
 
 const app = express();
 //bodyparser
@@ -136,7 +137,24 @@ async function(req, res) {
         console.error(err);
         res.send("Error (genreError) " + err);
     }
-})
+}) 
+
+const options = {
+   method: 'GET',
+   url: 'https://movie-database-imdb-alternative.p.rapidapi.com/',
+   qs: {s: 'Avengers Endgame', page: '1', r: 'json'},
+   headers: {
+     'x-rapidapi-key': 'e3a2dd1811mshfaa5402ffaa8014p12ff5ajsn2b3b415ab9d9',
+     'x-rapidapi-host': 'movie-database-imdb-alternative.p.rapidapi.com',
+     useQueryString: true
+   }
+ };
+
+ request(options, function (error, response, body) {
+ 	if (error) throw new Error(error);
+
+ 	console.log(body);
+ });
 const {Pool} = require('pg');
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL, 
