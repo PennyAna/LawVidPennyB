@@ -18,7 +18,7 @@ html {
 	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif	
 }
 .jumbotron {
-	background-color: var(--color-dark);
+	background-color: var(--color-light-two);
 	padding: 30px;
 	color: var(--color-accent);
 }
@@ -42,7 +42,7 @@ h1 {
 	max-height: 100%;
 	float: left;
 	position: relative;
-	background-color: var(--color-dark-two);
+	background-color: var(--color-light-two);
 	color: var(--black);
 	padding: 50px;
 	margin: 0px;
