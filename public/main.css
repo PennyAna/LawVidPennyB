@@ -48,7 +48,7 @@ h1 {
 }
 .col-sm-9 {
 	max-width: 75%;
-	float: left;
+	float: right;
 	position: relative;
 	max-height: 100%;
 	background-color: var(--color-light-two);
