@@ -9,7 +9,7 @@
 
 }
 html {
-  position: relative;
+  position: absolute;
   min-height: 100%;
 }
 .jumbotron {
@@ -158,9 +158,6 @@ radio {
 	height: 30px;
 	background-color: var(--color-dark);
 	color: var(--color-accent);
-	text-align: center;
-}
-#footerP {
 	text-align: center;
 }
 #footerDiv {
